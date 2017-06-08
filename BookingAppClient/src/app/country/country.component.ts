@@ -1,25 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import {Country} from "./country.model"
+import { Country } from "./country.model"
 import { Observable } from "rxjs/Observable";
-import { Http, Response } from '@angular/http';
+import { HttpCountryService } from './country.http.service';
+import 'rxjs/add/operator/map'
 @Component({
   selector: 'app-country',
   templateUrl: './country.component.html',
-  styleUrls: ['./country.component.css']
+  styleUrls: ['./country.component.css'],
+  providers: [HttpCountryService]
 })
 export class CountryComponent implements OnInit {
 
-  private countries: any;
+  private countries: Array<Country>;
 
-        constructor(private http: Http) { 
+        constructor(private httpCountryService: HttpCountryService) { 
         }
-  getCountries(): Observable<any> {
-
-        return this.http.get("http://localhost:54042/country/countries");        
-    }
+ 
   ngOnInit() {
-
-      this.getCountries().subscribe((res: Response) => {this.countries = res.json(); console.log(this.countries)})
+      this.httpCountryService.getCountries().subscribe((res: any) => {this.countries = res; console.log(this.countries)},
+                                    error => {alert("Unsuccessful fetch operation!"); console.log(error);}
+      );
   }
 
   
