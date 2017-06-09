@@ -6,9 +6,8 @@ import { CountryComponent } from './country/country.component';
 import { HttpCountryService } from './country/country.http.service';
 import {LocationService} from "app/location.services"
 import { FormsModule }   from '@angular/forms';
-import { MdInputModule} from '@angular/material';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-
+import { MaterialModule} from '@angular/material';
+import { NoopAnimationsModule,BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,8 +17,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     HttpModule,
     FormsModule,
-    MdInputModule,
-    NoopAnimationsModule
+    MaterialModule,
+    BrowserAnimationsModule,
   ],
   providers: [LocationService],
   bootstrap: [AppComponent]

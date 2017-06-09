@@ -1,4 +1,4 @@
-<button (click)="toggle()">{{isVisible ? "Hide": "Show" }}</button>
+<button md-raised-button color="primary" (click)="toggle()">{{isVisible ? "Hide": "Show" }}</button>
 <div *ngIf="isVisible">
   <h1>Add country</h1>
   <form #fo="ngForm" (ngSubmit)="onSubmit(fo.value, fo)">
@@ -8,7 +8,7 @@
       <md-input-container >
        <input mdInput placeholder="Country Code" type="text" name="Code" ngModel>
       </md-input-container>
-    <input type="submit">
+    <button md-raised-button type="submit">submit</button>
   </form>
 </div>
 <div>
