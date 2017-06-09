@@ -19,19 +19,16 @@ export class HttpCountryService {
         return res.json() || [];
     }
 
-    postCountries(): Observable<any> {
+    postCountries(country: Country): Observable<any> {
 
         const headers: Headers = new Headers();
-        headers.append('Accept','application/json');
-        headers.append('Content-type','application/json');
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
 
         const opts: RequestOptions = new RequestOptions();
 
         return this.http.post(
-        this.locationService.RootLocation + 'api/ProductsWA',
-        JSON.stringify({
-            Name: 'Product from front-end',
-            Price: 15
-        }), opts);
+        this.locationService.RootLocation + 'country/country',
+        country, opts);
     }
 }

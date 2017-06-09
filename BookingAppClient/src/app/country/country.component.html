@@ -1,5 +1,20 @@
+<button (click)="toggle()">{{isVisible ? "Hide": "Show" }}</button>
+<div *ngIf="isVisible">
+  <h1>Add country</h1>
+  <form #fo="ngForm" (ngSubmit)="onSubmit(fo.value, fo)">
+     <md-input-container >
+      <input mdInput placeholder="Country Name" value = "sadasd" >
+     </md-input-container>
+      <md-input-container >
+       <input mdInput placeholder="Country Code" type="text" name="Code" ngModel>
+      </md-input-container>
+    <input type="submit">
+  </form>
+</div>
 <div>
   <ul>
     <li *ngFor="let country of countries">{{country.Name}}</li>
   </ul>
 </div>
+
+
