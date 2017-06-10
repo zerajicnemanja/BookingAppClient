@@ -5,23 +5,33 @@ import 'rxjs/add/operator/map'
 
 @Injectable()
 export class AuthenticationService {
-    constructor(private http: Http) { }
+
+    public loggedIn:boolean;
+    private response :Response;
+
+    constructor(private http: Http) { 
+        this.loggedIn=false;
+    }
 
     login(username: string, password: string) {
         let headers = new Headers();
-       headers.append('Content-Type', 'application/x-www-form-urlencoded'); 
+        headers.append('Content-Type', 'application/x-www-form-urlencoded'); 
 
-  
-        return this.http.post('http://localhost:54042/oauth/token', 'username='+ username+'&password='+ password+'&grant_type=password',{headers:headers})
+       this.http.post('http://localhost:54042/oauth/token', `username=${username}&password=${password}&grant_type=password`).subscribe(res => this.response = res);
+    }            
+    /*this.http.post('http://localhost:54042/oauth/token', `username=${username}&password=${password}&grant_type=password`)
                     .map((response: Response) => {
                 let user = response.json();
-                if (user && user.token) {
+                if (user && user.token) {                
+                
                     localStorage.setItem('currentUser', JSON.stringify(user));
+                    this.loggedIn=true;                
                 }
             });
-    }
-
+            return this.loggedIn;
+    } */
+    
     logout() {
         localStorage.removeItem('currentUser');
     }
-}
+}  

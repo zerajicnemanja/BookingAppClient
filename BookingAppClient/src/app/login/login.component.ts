@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {  ActivatedRoute } from '@angular/router';
+import {  ActivatedRoute,Router } from '@angular/router';
 import {AuthenticationService} from 'app/services/authentication.service'
 import { FormsModule } from '@angular/forms';
 
@@ -13,8 +13,7 @@ export class LoginComponent implements OnInit {
     model: any = {};
     returnUrl: string;
 
-    constructor(
-        private route: ActivatedRoute,
+    constructor(  private router :Router,     
         private authenticationService: AuthenticationService) { }
 
     ngOnInit() {
@@ -24,10 +23,11 @@ export class LoginComponent implements OnInit {
     }
 
     login() {
-        var a;
-        this.authenticationService.login(this.model.username, this.model.password).subscribe((res:any) => {
-          a = res
-        });
+        
+      if(this.authenticationService.login(this.model.username, this.model.password)){
+             this.router.navigate(['']);
+      }
+     
             
     }
 }
