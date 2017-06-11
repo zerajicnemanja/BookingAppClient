@@ -1,4 +1,4 @@
-import { Country } from './country.model';
+import { Region } from './region.model';
 import { Observable } from "rxjs/Observable";
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import 'rxjs/add/operator/map'
@@ -6,20 +6,20 @@ import {Injectable} from '@angular/core'
 import {LocationService} from "app/location.services"
 
 @Injectable()
-export class HttpCountryService {
+export class HttpRegionService {
 
     constructor(private http: Http,private locationService: LocationService) { 
     }
 
-    getCountries(): Observable<any> {
+    getRegions(): Observable<any> {
 
-        return this.http.get(this.locationService.RootLocation + "country/countries").map(this.extractData);        
+        return this.http.get(this.locationService.RootLocation + "region/regions").map(this.extractData);        
     }
     private extractData(res: Response){
         return res.json() || [];
     }
 
-    postCountries(country: Country): Observable<any> {
+    postRegion(region: Region): Observable<any> {
 
         const headers: Headers = new Headers();
         headers.append('Accept', 'application/json');
@@ -29,19 +29,15 @@ export class HttpCountryService {
 
         opts.headers = headers;
         return this.http.post(
-        this.locationService.RootLocation + 'country/country',
-        country, opts);
+        this.locationService.RootLocation + 'region/region',
+        region, opts);
     }
 
-    getCountryById(Id:number){
-        return this.http.get(this.locationService.RootLocation + "country/countries/"+ Id).map(this.extractData);
+    deleteRegion(region:Region){
+        return this.http.delete(this.locationService.RootLocation + 'region/region/'+ region.Id);
     }
 
-    deleteCountry(country:Country){
-        return this.http.delete(this.locationService.RootLocation + 'country/country/'+ country.Id);
-    }
-
-    editCountry(country:Country){
+    editRegion(region:Region){
         const headers: Headers = new Headers();
         headers.append('Accept', 'application/json');
         headers.append('Content-type', 'application/json');
@@ -50,8 +46,8 @@ export class HttpCountryService {
         opts.headers = headers;
         
         return this.http.put(
-            this.locationService.RootLocation + 'country/country/'+ country.Id,
-            country,
+            this.locationService.RootLocation + 'region/region/'+ region.Id,
+            region,
             opts);
     }
 }

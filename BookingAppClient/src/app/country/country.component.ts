@@ -4,8 +4,7 @@ import { Country } from './country.model';
 import { Observable } from "rxjs/Observable";
 import { HttpCountryService } from './country.http.service';
 import {MdDialog, MdDialogRef} from '@angular/material';
-import 'rxjs/add/operator/map'
-
+import { DialogCountryComponent } from './dialog-country-component';
 @Component({
   selector: 'app-country',
   templateUrl: './country.component.html',
@@ -15,9 +14,6 @@ import 'rxjs/add/operator/map'
 export class CountryComponent implements OnInit {
 
   private countries: Array<Country>;
-  private asda: any;
-  isVisible = true;
-  
 
     constructor(private httpCountryService: HttpCountryService, public dialog: MdDialog) { 
         }
@@ -29,7 +25,7 @@ export class CountryComponent implements OnInit {
       );
     }
     openAddDialog(){
-      let dialogRef= this.dialog.open(AddEditCountryDialog);
+      let dialogRef= this.dialog.open(DialogCountryComponent);
       dialogRef.componentInstance.title = "Adding new Country"
       dialogRef.afterClosed().subscribe( (result:Country) => {
 
@@ -49,9 +45,9 @@ export class CountryComponent implements OnInit {
     editCountry(country:Country){
       console.log("Start editing "+ country.Name);
 
-      let dialogRef= this.dialog.open(AddEditCountryDialog);
+      let dialogRef= this.dialog.open(DialogCountryComponent);
       dialogRef.componentInstance.title = "Editing Country"
-      let beforeEdit = country;
+      dialogRef.componentInstance.country = country;
       dialogRef.afterClosed().subscribe( (result:Country) => {
 
         if(result == undefined || null){
@@ -77,29 +73,7 @@ export class CountryComponent implements OnInit {
         error => {alert("Unsuccessful deleting operation!"); console.log(error);}
         );
     }
-
-    toggle(){
-      this.isVisible = !this.isVisible;
-    }
 }
 
 
-@Component({
-  selector: 'add-edit-country-dialog',
-  templateUrl: './add-edit-country-dialog.html'
-})
-export class AddEditCountryDialog{
-  public title: string;
-  constructor(public dialogRef: MdDialogRef<AddEditCountryDialog>) {}
 
-  onSubmit(country: Country, form: NgForm) {
-      console.log(country);
-      
-      if(!form.valid){
-        return;
-      }
-
-      form.reset();
-      this.dialogRef.close(country);
-    }
-}
