@@ -29,12 +29,12 @@ export class LoginComponent implements OnInit {
       /*if(this.authenticationService.login(this.model.username, this.model.password)){
              this.router.navigate(['']);
       }*/
-this.http.post('http://localhost:54042/oauth/token', `username=${this.model.username}&password=${this.model.password}&grant_type=password`)
+        this.http.post('http://localhost:54042/oauth/token', `username=${this.model.username}&password=${this.model.password}&grant_type=password`)
        .subscribe(
         response => {
           localStorage.setItem('id_token', response.json().access_token);
           console.log(response.json());
-          this.router.navigate(['home']);
+          this.router.navigate(['/home']);
         },
         error => {
           alert(error.text());
