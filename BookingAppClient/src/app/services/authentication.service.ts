@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map'
+import {  Router } from '@angular/router';
+
 
 @Injectable()
 export class AuthenticationService {
@@ -9,7 +10,7 @@ export class AuthenticationService {
     public loggedIn:boolean;
     private response :Response;
 
-    constructor(private http: Http) { 
+    constructor(private http: Http,private router:Router) { 
         this.loggedIn=false;
     }
 
@@ -17,7 +18,18 @@ export class AuthenticationService {
         let headers = new Headers();
         headers.append('Content-Type', 'application/x-www-form-urlencoded'); 
 
-       this.http.post('http://localhost:54042/oauth/token', `username=${username}&password=${password}&grant_type=password`).subscribe(res => this.response = res);
+       this.http.post('http://localhost:54042/oauth/token', `username=${username}&password=${password}&grant_type=password`)
+       .subscribe(
+        response => {
+          localStorage.setItem('id_token', response.json().id_token);
+          this.loggedIn=false;
+          this.router.navigate(['home']);
+        },
+        error => {
+          alert(error.text());
+          console.log(error.text());
+        }
+      );
     }            
     /*this.http.post('http://localhost:54042/oauth/token', `username=${username}&password=${password}&grant_type=password`)
                     .map((response: Response) => {
