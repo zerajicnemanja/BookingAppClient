@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
-import { CountryComponent } from './country/country.component';
+import { CountryComponent, AddEditCountryDialog } from './country/country.component';
 import { HttpCountryService } from './country/country.http.service';
 import {LocationService} from "app/location.services"
 import { FormsModule }   from '@angular/forms';
@@ -11,7 +11,8 @@ import { NoopAnimationsModule,BrowserAnimationsModule } from '@angular/platform-
 @NgModule({
   declarations: [
     AppComponent,
-    CountryComponent
+    CountryComponent,
+    AddEditCountryDialog
   ],
   imports: [
     BrowserModule,
@@ -21,6 +22,6 @@ import { NoopAnimationsModule,BrowserAnimationsModule } from '@angular/platform-
     BrowserAnimationsModule,
   ],
   providers: [LocationService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent,AddEditCountryDialog]
 })
 export class AppModule { }
