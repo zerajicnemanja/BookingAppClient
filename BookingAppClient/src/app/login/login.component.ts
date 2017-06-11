@@ -33,6 +33,10 @@ export class LoginComponent implements OnInit {
        .subscribe(
         response => {
           localStorage.setItem('id_token', response.json().access_token);
+          localStorage.setItem('role', response.headers.get('Role'));   
+          localStorage.setItem('username', this.model.username);       
+              
+
           console.log(response.json());
           this.router.navigate(['/home']);
         },

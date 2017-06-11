@@ -1,0 +1,44 @@
+<h2>Add accomodation</h2>
+<form type="form" (ngSubmit)="f.form.valid && save()" #f="ngForm" novalidate>
+    <div [ngClass]="{ 'has-error': f.submitted && !name.valid }">
+        <label for="name">Name:</label>
+        <input type="text" name="name" [(ngModel)]="model.name" required />
+        <div *ngIf="f.submitted && !type.valid">Name is required</div>
+    </div>
+    <div [ngClass]="{ 'has-error': f.submitted && !description.valid }">
+        <label for="description">Description:</label>
+        <input type="text" name="description" [(ngModel)]="model.description" required />
+        <div *ngIf="f.submitted && !description.valid">Description is required</div>
+    </div>
+
+    <div [ngClass]="{ 'has-error': f.submitted && !address.valid }">
+        <label for="address">Adress:</label>
+        <input type="text" name="address" [(ngModel)]="model.address" required />
+        <div *ngIf="f.submitted && !address.valid">Adress is required</div>
+    </div>
+
+    <div [ngClass]="{ 'has-error': f.submitted && !latitude.valid }">
+        <label for="latitude">Latitude:</label>
+        <input type="text" name="latitude" [(ngModel)]="model.latitude" required />
+        <div *ngIf="f.submitted && !latitude.valid">Latitude is required</div>
+    </div>
+
+    <div [ngClass]="{ 'has-error': f.submitted && !longitude.valid }">
+        <label for="longitude">Longitude:</label>
+        <input type="text" name="longitude" [(ngModel)]="model.longitude" required />
+        <div *ngIf="f.submitted && !longitude.valid">Longitude is required</div>
+    </div>
+
+    <div>
+        <select ng-change="update()">
+           <option *ngFor="let type of list_types" [value]="type">
+            {{type}}
+         </option>
+</select>
+    </div>
+
+    <div>
+        <button type="submit">Save</button>
+
+    </div>
+</form>
