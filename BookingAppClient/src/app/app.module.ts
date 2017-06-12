@@ -12,7 +12,13 @@ import {routing} from 'app/app.routing'
 import { FormsModule }    from '@angular/forms';
 import {AuthGuard} from 'app/guard/auth.guard';
 import {RegisterService} from 'app/services/register.service';
-import {AuthenticationService} from 'app/services/authentication.service'
+import {AuthenticationService} from 'app/services/authentication.service';
+import { AccomodationComponent } from './accomodation/accomodation.component';
+import { AccomodationTypeComponent } from './accomodation-type/accomodation-type.component';
+import { RoomComponent } from './room/room.component';
+import { RoomReservationComponent } from './room-reservation/room-reservation.component';
+import { CommentComponent } from './comment/comment.component';
+import { CommentListComponent } from './comment-list/comment-list.component'
 
 
 @NgModule({
@@ -22,7 +28,13 @@ import {AuthenticationService} from 'app/services/authentication.service'
     CountryComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    AccomodationComponent,
+    AccomodationTypeComponent,
+    RoomComponent,
+    RoomReservationComponent,
+    CommentComponent,
+    CommentListComponent
   ],
   imports: [
     BrowserModule,

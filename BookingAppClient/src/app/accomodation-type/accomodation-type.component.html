@@ -1,0 +1,13 @@
+<h2>Add accomodation type</h2>
+    <form type="form" (ngSubmit)="f.form.valid && save()" #f="ngForm" novalidate>
+        <div [ngClass]="{ 'has-error': f.submitted && !type.valid }">
+            <label for="type">Type name:</label>
+            <input type="text"  name="type" [(ngModel)]="model.type" #type="ngModel" required />
+            <div *ngIf="f.submitted && !type.valid">Type is required</div>
+        </div>
+       
+        <div >
+            <button type="submit">Save</button>
+           
+        </div>
+    </form>
