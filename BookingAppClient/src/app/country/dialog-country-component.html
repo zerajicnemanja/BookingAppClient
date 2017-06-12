@@ -1,0 +1,12 @@
+<div>
+    <h2 md-dialog-title>{{title}}</h2>
+    <form #fo="ngForm" (ngSubmit)="onSubmit(fo.value, fo)">
+        <md-input-container>
+            <input mdInput placeholder="Country Name" type="text" name="Name" required [ngModel]=country.Name>
+        </md-input-container>
+        <md-input-container>
+            <input mdInput placeholder="Country Code" type="text" name="Code" required [ngModel]=country.Code>
+        </md-input-container>
+        <button md-raised-button color="primary" type="submit">submit</button>
+    </form>
+</div>

@@ -1,3 +1,4 @@
+import 'hammerjs';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
@@ -19,11 +20,16 @@ import { RoomComponent } from './room/room.component';
 import { RoomReservationComponent } from './room-reservation/room-reservation.component';
 import { CommentComponent } from './comment/comment.component';
 import { CommentListComponent } from './comment-list/comment-list.component'
-
+import { MaterialModule} from '@angular/material';
+import { NoopAnimationsModule, BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RegionComponent } from './region/region.component';
+import { PlaceComponent } from './place/place.component';
+import { DialogRegionComponent } from './region/dialog-region-component';
+import { DialogCountryComponent } from './country/dialog-country-component';
+import { DialogPlaceComponent } from './place/dialog-place-component';
 
 @NgModule({
-
-  declarations: [
+   declarations: [
     AppComponent,
     CountryComponent,
     LoginComponent,
@@ -34,15 +40,27 @@ import { CommentListComponent } from './comment-list/comment-list.component'
     RoomComponent,
     RoomReservationComponent,
     CommentComponent,
-    CommentListComponent
+    CommentListComponent,
+    RegionComponent,
+    PlaceComponent,
+    DialogRegionComponent,
+    DialogCountryComponent,
+    DialogPlaceComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
-  FormsModule,
+    FormsModule,
+    MaterialModule,
+    BrowserAnimationsModule,
     routing
   ],
   providers: [LocationService,  AuthenticationService,AuthGuard,RegisterService],
-  bootstrap: [AppComponent]
+
+  bootstrap: [
+    AppComponent,
+    DialogCountryComponent,
+    DialogRegionComponent,
+    DialogPlaceComponent]
 })
 export class AppModule { }
