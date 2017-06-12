@@ -23,7 +23,7 @@ export class AccomodationTypeComponent implements OnInit {
        this.http.post('http://localhost:54042/api/AccommodationType/AddType', `Name=${this.model.type}`,    {headers:headers})
        .subscribe(
         response => {
-         alert("OK");
+        // alert("OK");
         },
         error => {
          // alert(error.text());
