@@ -38,6 +38,7 @@ export class DialogRegionComponent{
         return;
       }
       region.Country_Id = region.Country.Id;
+      region.Country = null;
       form.reset();
       this.dialogRef.close(region);
     }

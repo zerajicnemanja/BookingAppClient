@@ -9,7 +9,7 @@ import { NgForm } from '@angular/forms';
 })
 export class DialogCountryComponent {
   public title: string;
-  public country: Country
+  public country: Country;
   constructor(public dialogRef: MdDialogRef<DialogCountryComponent>) { }
 
   ngOnInit() {

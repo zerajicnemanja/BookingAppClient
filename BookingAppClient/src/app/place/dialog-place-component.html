@@ -1,0 +1,14 @@
+<div>
+    <h2>{{title}}</h2>
+    <form #fo="ngForm" (ngSubmit)="onSubmit(fo.value, fo)">
+        <md-input-container>
+            <input mdInput placeholder="Place Name" type="text" name="Name" required [(ngModel)]="selectedPlace.Name">
+        </md-input-container>
+        <md-select placeholder="Region" [(ngModel)]="selectedPlace.Region" name="Region">
+            <md-option *ngFor="let region of regions" [value]="region">
+                {{region.Name}}
+            </md-option>
+        </md-select>
+        <button md-raised-button color="primary" type="submit">submit</button>
+    </form>
+</div>

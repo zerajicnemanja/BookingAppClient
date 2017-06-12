@@ -20,7 +20,7 @@ export class CountryComponent implements OnInit {
  
     ngOnInit() {
       this.httpCountryService.getCountries().subscribe((res: any) => {
-        this.countries = res; console.log(this.countries)},
+          this.countries = res; console.log(this.countries)},
         error => {alert("Unsuccessful fetch operation!"); console.log(error);}
       );
     }

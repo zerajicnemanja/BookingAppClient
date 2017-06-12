@@ -1,3 +1,4 @@
+import { Region } from '../region/region.model';
 export class Place {
     constructor() {
     }
@@ -6,4 +7,6 @@ export class Place {
     public Name: string;
     /*[ForeignKey("Region")]*/
     public Region_Id: number;
+
+    public Region:Region;
 }

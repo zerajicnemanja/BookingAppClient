@@ -27,7 +27,7 @@ export class RegionComponent implements OnInit {
 
   openAddDialog(){
     let dialogRef= this.dialog.open(DialogRegionComponent);
-      dialogRef.componentInstance.title = "Adding new Country";
+      dialogRef.componentInstance.title = "Adding new Region";
       dialogRef.afterClosed().subscribe( (result:Region) => {
 
         if(result == undefined || null){
