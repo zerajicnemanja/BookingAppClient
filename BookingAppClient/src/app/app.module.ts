@@ -29,6 +29,7 @@ import { DialogRegionComponent } from './region/dialog-region-component';
 import { DialogPlaceComponent } from './place/dialog-place-component';
 import { AccommodationDialogComponent } from './accommodation-dialog/accommodation-dialog.component';
 import { DialogcountryComponent } from './dialogcountry/dialogcountry.component';
+import { RoomDialogComponent } from './room-dialog/room-dialog.component';
 
 @NgModule({
    declarations: [
@@ -48,7 +49,8 @@ import { DialogcountryComponent } from './dialogcountry/dialogcountry.component'
     DialogRegionComponent,
     AccommodationDialogComponent,
     DialogcountryComponent,
-    DialogPlaceComponent
+    DialogPlaceComponent,
+    RoomDialogComponent
   ],
   entryComponents:[
     DialogRegionComponent,

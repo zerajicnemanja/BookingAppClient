@@ -10,7 +10,12 @@ export class AccommodationTypeService {
     constructor(private http: Http, private locationService: LocationService) { }
 
     getAccommodations(): Observable<any> {
-        return this.http.get(this.locationService.RootLocation + "type/types").map(this.extractData);
+        const headers: Headers = new Headers();        
+        headers.append('Authorization','Bearer '+localStorage.getItem('id_token'));
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.get(this.locationService.RootLocation + "type/types",opts).map(this.extractData);
     }
      private extractData(res: Response) {
         return res.json() || [];
