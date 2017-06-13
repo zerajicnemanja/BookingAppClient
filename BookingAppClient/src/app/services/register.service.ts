@@ -7,14 +7,14 @@ import 'rxjs/add/operator/map'
 export class RegisterService {
     constructor(private http: Http) { }
 
-    registerUser( model:any) {
+    registerUser( model:any):Observable<any> {
         let headers = new Headers();
        headers.append('Content-Type', 'application/x-www-form-urlencoded'); 
 
   
-      this.http.post('http://localhost:54042/api/Account/Register',
-         `Username=${model.username}&Password=${model.password}&ConfirmPassword=${model.confirmPassword}&Email=${model.email}`,
-         {headers:headers}).subscribe(data => { alert('ok');}, error => {console.log(error.json());});
+      return this.http.post('http://localhost:54042/api/Account/Register',
+         `Username=${model.Username}&Password=${model.Password}&ConfirmPassword=${model.ConfirmPassword}&Email=${model.Email}`,
+         {headers:headers});
                     
     }
 

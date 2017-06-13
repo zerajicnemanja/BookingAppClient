@@ -15,21 +15,7 @@ export class AuthenticationService {
     }
 
     login(username: string, password: string) {
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/x-www-form-urlencoded'); 
-
-       this.http.post('http://localhost:54042/oauth/token', `username=${username}&password=${password}&grant_type=password`)
-       .subscribe(
-        response => {
-          localStorage.setItem('id_token', response.json().id_token);
-          this.loggedIn=false;
-          this.router.navigate(['home']);
-        },
-        error => {
-          alert(error.text());
-          console.log(error.text());
-        }
-      );
+        
     }            
     /*this.http.post('http://localhost:54042/oauth/token', `username=${username}&password=${password}&grant_type=password`)
                     .map((response: Response) => {

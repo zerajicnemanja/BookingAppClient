@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {RegisterService} from 'app/services/register.service'
-import { FormsModule } from '@angular/forms';
+import { RegisterService } from 'app/services/register.service'
+import { FormsModule, NgForm } from '@angular/forms';
+import { MdDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-register',
@@ -9,16 +10,29 @@ import { FormsModule } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
 
-   model: any = {};
+  model: any = {
 
-    constructor(      
-        private registerService: RegisterService ) { }
+  };
+
+  constructor(
+    private registerService: RegisterService,
+    public dialogRef: MdDialogRef<RegisterComponent>) { }
 
   ngOnInit() {
   }
 
-  registerUser(){
-    var regResult =this.registerService.registerUser(this.model);
+  registerUser(user: any, form: NgForm) {
+
+    this.registerService.registerUser(user).subscribe(
+      data => {
+        this.dialogRef.close("success");
+        alert('ok');
+      },
+      error => { alert(error); console.log(error); })
+  }
+
+  switchToSignIn() {
+    this.dialogRef.close("toSignIn");
   }
 
 }

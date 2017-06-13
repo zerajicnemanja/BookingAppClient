@@ -1,20 +1,22 @@
-<button md-raised-button color="primary" (click)="openAddDialog()">Add Region</button>
-<md-nav-list dense>
-  <h3 md-subheader>Regions</h3>
-  <md-list-item *ngFor="let region of regions" >
-    <button md-icon-button md-list-avatar [mdMenuTriggerFor]="menu" >
+<div class="block-margin">
+    <button md-raised-button color="primary" (click)="openAddDialog()">Add Region</button>
+    <md-nav-list dense>
+        <h3 md-subheader>Regions</h3>
+        <md-list-item *ngFor="let region of regions">
+            <button md-icon-button md-list-avatar [mdMenuTriggerFor]="menu">
       <md-icon>more_vert</md-icon>
     </button>
-      <md-menu #menu="mdMenu">
-        <button md-menu-item (click)="editRegion(region)">
+            <md-menu #menu="mdMenu">
+                <button md-menu-item (click)="editRegion(region)">
           <md-icon>edit</md-icon>
           <span>Edit</span>
         </button>
-        <button md-menu-item (click)="deleteRegion(region)">
+                <button md-menu-item (click)="deleteRegion(region)">
           <md-icon>delete</md-icon>
           <span>Delete</span>
         </button>
-      </md-menu>
-    <h4 md-line>{{region.Name}}</h4>
-  </md-list-item>
-</md-nav-list>
+            </md-menu>
+            <h4 md-line>{{region.Name}}</h4>
+        </md-list-item>
+    </md-nav-list>
+</div>

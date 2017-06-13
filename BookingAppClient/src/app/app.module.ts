@@ -25,9 +25,10 @@ import { NoopAnimationsModule, BrowserAnimationsModule } from '@angular/platform
 import { RegionComponent } from './region/region.component';
 import { PlaceComponent } from './place/place.component';
 import { DialogRegionComponent } from './region/dialog-region-component';
-import { DialogCountryComponent } from './country/dialog-country-component';
+//import { DialogCountryComponent } from './country/dialog-country-component';
 import { DialogPlaceComponent } from './place/dialog-place-component';
 import { AccommodationDialogComponent } from './accommodation-dialog/accommodation-dialog.component';
+import { DialogcountryComponent } from './dialogcountry/dialogcountry.component';
 
 @NgModule({
    declarations: [
@@ -45,11 +46,16 @@ import { AccommodationDialogComponent } from './accommodation-dialog/accommodati
     RegionComponent,
     PlaceComponent,
     DialogRegionComponent,
-    DialogCountryComponent,
+    AccommodationDialogComponent,
+    DialogcountryComponent,
+    DialogPlaceComponent
+  ],
+  entryComponents:[
+    DialogRegionComponent,
+    DialogcountryComponent,
     DialogPlaceComponent,
     AccommodationDialogComponent
-    
-  ],
+    ],
   imports: [
     BrowserModule,
     HttpModule,
@@ -59,14 +65,7 @@ import { AccommodationDialogComponent } from './accommodation-dialog/accommodati
     routing
   ],
   providers: [LocationService,  AuthenticationService,AuthGuard,RegisterService],
-  entryComponents: [
-    DialogCountryComponent,
-    DialogRegionComponent,
-    DialogPlaceComponent,
-    AccommodationDialogComponent],
-  bootstrap: [
-    AppComponent,
-    
-    ]
+
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

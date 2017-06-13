@@ -1,16 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
+import { MdDialogRef } from '@angular/material';
 import { Country } from '../country/country.model';
-import { MdDialog, MdDialogRef } from '@angular/material';
 import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'dialog-country-component',
-  templateUrl: './dialog-country-component.html'
+  selector: 'app-dialogcountry',
+  templateUrl: './dialogcountry.component.html',
+  styleUrls: ['./dialogcountry.component.css']
 })
-export class DialogCountryComponent {
+@Injectable()
+export class DialogcountryComponent implements OnInit {
+
   public title: string;
   public country: Country;
-  constructor(public dialogRef: MdDialogRef<DialogCountryComponent>) { }
+  constructor(public dialogRef: MdDialogRef<DialogcountryComponent>) { }
 
   ngOnInit() {
     if (this.country == undefined) {

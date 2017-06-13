@@ -1,10 +1,38 @@
-<div class="jumbotron">
-    <div class="container">
-        <div class="col-sm-8 col-sm-offset-2">
-            <a [routerLink]="['/login']">Login </a> <br>
-            <a [routerLink]="['/register']">register</a><br>
-            <router-outlet></router-outlet>
-        <app-home></app-home>
-        </div>
+<md-toolbar color="primary">
+    <span>Booking Application</span>
+    <span class="example-spacer"></span>
+    <div *ngIf="!isLoggedIn">
+        <button md-button (click)="openLoginDialog()"><md-icon>input</md-icon></button>
+        <button md-button (click)="openRegistrationDialog()"><md-icon>person_add</md-icon></button>
     </div>
-</div>
+    <div *ngIf="isLoggedIn">
+        <button md-button (click)="editUser()" title="Edit profile"><md-icon>verified_user</md-icon>{{username}}</button>
+        <button md-button (click)="logout()" title="Logout"><md-icon>reply</md-icon></button>
+    </div>
+</md-toolbar>
+<md-tab-group>
+    <md-tab>
+        <ng-template md-tab-label>
+            Country
+        </ng-template>
+        <app-country></app-country>
+    </md-tab>
+    <md-tab>
+        <ng-template md-tab-label>
+            Region
+        </ng-template>
+        <app-region></app-region>
+    </md-tab>
+    <md-tab>
+        <ng-template md-tab-label>
+            Place
+        </ng-template>
+        <app-place></app-place>
+    </md-tab>
+    <md-tab>
+        <ng-template md-tab-label>
+            Accomodation
+        </ng-template>
+        <app-accomodation></app-accomodation>
+    </md-tab>
+</md-tab-group>

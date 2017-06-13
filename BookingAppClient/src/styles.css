@@ -1,10 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+
+
 /*@import '~@angular/material/prebuilt-themes/pink-bluegrey.css';*/
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 .example-icon {
-  padding: 0 14px;
+    padding: 0 14px;
 }
 
 .example-spacer {
-  flex: 1 1 auto;
+    flex: 1 1 auto;
+}
+
+.block-margin {
+    margin: 30px
+}
+
+.center {
+    text-align: center;
 }
