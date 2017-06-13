@@ -1,54 +1,22 @@
-<h2>Add accomodation</h2>
-<form type="form" (ngSubmit)="f.form.valid && save()" #f="ngForm" novalidate>
-    <div>
-        <label for="name">Name:</label>
-        <input type="text" name="name" [(ngModel)]="model.name" #name="ngModel" required />
-        <div *ngIf="f.submitted && !name.valid">Name is required</div>
-    </div>
-    <div>
-        <label for="description">Description:</label>
-        <input type="text" name="description" [(ngModel)]="model.description" #description="ngModel" required />
-        <div *ngIf="f.submitted && !description.valid">Description is required</div>
-    </div>
+<button md-raised-button color="primary" (click)="openAddDialog()">Add Accommodation</button>
+<md-nav-list dense>
+    <h3 md-subheader>Accommodations</h3>
+    <md-list-item *ngFor="let accommodation of accommodations">
+        <button md-icon-button md-list-avatar [mdMenuTriggerFor]="menu">
+      <md-icon>more_vert</md-icon>
+    </button>
+        <md-menu #menu="mdMenu">
+            <button md-menu-item (click)="editCountry(accommodation)">
+          <md-icon>edit</md-icon>
+          <span>Edit</span>
+        </button>
+            <button md-menu-item (click)="deleteCountry(accommodation)">
+          <md-icon>delete</md-icon>
+          <span>Delete</span>
+        </button>
+        </md-menu>
+        <h4 md-line>{{accommodation.Name}}</h4>
+        <p md-line> {{accommodation.Adress}} </p>
 
-    <div>
-        <label for="address">Adress:</label>
-        <input type="text" name="address" [(ngModel)]="model.address" #address="ngModel" required />
-        <div *ngIf="f.submitted && !address.valid">Adress is required</div>
-    </div>
-
-    <div>
-        <label for="latitude">Latitude:</label>
-        <input type="text" name="latitude" [(ngModel)]="model.latitude" #latitude="ngModel" required />
-        <div *ngIf="f.submitted && !latitude.valid">Latitude is required</div>
-    </div>
-
-    <div>
-        <label for="longitude">Longitude:</label>
-        <input type="text" name="longitude" [(ngModel)]="model.longitude" #longitude="ngModel" required />
-        <div *ngIf="f.submitted && !longitude.valid">Longitude is required</div>
-    </div>
-
-    <div>
-        <label for="Type">Type:</label>
-        <select (click)="loadTypes()" ngModel name="accType">
-           <option *ngFor="let type of list_types" [value]="type">
-               {{type}}
-            </option>
-        </select>
-    </div>
-    <div>
-        <label for="Place">Place:</label>
-        <select (click)="loadPlaces()" #selectedCategory (change)='model.PlaceName = selectedCategory.value'>
-           <option *ngFor="let place of list_place" [value]="place">
-               {{type}}
-            </option>
-        </select>
-    </div>
-
-
-    <div>
-        <button type="submit">Save</button>
-
-    </div>
-</form>
+    </md-list-item>
+</md-nav-list>

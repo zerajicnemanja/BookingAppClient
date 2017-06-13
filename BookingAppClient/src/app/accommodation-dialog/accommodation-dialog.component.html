@@ -1,0 +1,34 @@
+<div>
+    <h2 md-dialog-title>{{title}}</h2>
+    <form #fo="ngForm" (ngSubmit)="onSubmit(fo.value, fo)">
+        <md-input-container>
+            <input mdInput placeholder="Name" type="text" name="Name" required [ngModel]=accommodation.Name>
+        </md-input-container>
+        <md-input-container>
+            <input mdInput placeholder="Description" type="text" name="Description" required [ngModel]=accommodation.Description>
+        </md-input-container>
+        <md-input-container>
+            <input mdInput placeholder="Address" type="text" name="Address" required [ngModel]=accommodation.Address>
+        </md-input-container>
+        <md-input-container>
+            <input mdInput placeholder="Latitude" type="number" name="Latitude" required [ngModel]=accommodation.Latitude>
+        </md-input-container>
+        <md-input-container>
+            <input mdInput placeholder="Longitude" type="number" name="Longitude" required [ngModel]=accommodation.Longitude>
+        </md-input-container>
+
+        <md-select id="Place" name="Place" [(ngModel)]=place placeholder="Place">
+            <md-option *ngFor="let place of places" [value]="place">
+                {{place.Name}}
+            </md-option>
+        </md-select>
+        <md-select id="Type" name="Type" [(ngModel)]=accomodationType placeholder="Type">
+            <md-option *ngFor="let type of types" [value]="type">
+                {{type.Name}}
+            </md-option>
+        </md-select>
+
+
+        <button md-raised-button color="primary" type="submit">submit</button>
+    </form>
+</div>

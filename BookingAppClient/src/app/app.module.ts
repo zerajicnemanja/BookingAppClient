@@ -27,6 +27,7 @@ import { PlaceComponent } from './place/place.component';
 import { DialogRegionComponent } from './region/dialog-region-component';
 import { DialogCountryComponent } from './country/dialog-country-component';
 import { DialogPlaceComponent } from './place/dialog-place-component';
+import { AccommodationDialogComponent } from './accommodation-dialog/accommodation-dialog.component';
 
 @NgModule({
    declarations: [
@@ -45,7 +46,9 @@ import { DialogPlaceComponent } from './place/dialog-place-component';
     PlaceComponent,
     DialogRegionComponent,
     DialogCountryComponent,
-    DialogPlaceComponent
+    DialogPlaceComponent,
+    AccommodationDialogComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -56,11 +59,14 @@ import { DialogPlaceComponent } from './place/dialog-place-component';
     routing
   ],
   providers: [LocationService,  AuthenticationService,AuthGuard,RegisterService],
-
-  bootstrap: [
-    AppComponent,
+  entryComponents: [
     DialogCountryComponent,
     DialogRegionComponent,
-    DialogPlaceComponent]
+    DialogPlaceComponent,
+    AccommodationDialogComponent],
+  bootstrap: [
+    AppComponent,
+    
+    ]
 })
 export class AppModule { }
