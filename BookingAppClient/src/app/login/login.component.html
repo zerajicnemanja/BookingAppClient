@@ -1,18 +1,18 @@
+<h2> Login</h2>
+<form name="form" (ngSubmit)="f.form.valid && login(f.value,f)" #f="ngForm" novalidate>
+    <div>
+        <md-input-container>
+            <input mdInput type="text" placeholder="Username" name="username" ngModel required />
+        </md-input-container>
+    </div>
+    <div>
+        <md-input-container>
+            <input mdInput type="password" placeholder="Password" name="password" ngModel required />
+        </md-input-container>
+    </div>
+    <div class="center">
+        <button md-raised-button type="submit" color="primary">Login</button>
+        <button md-raised-button (click)="switchToReg()">Register</button>
 
-    <h2>Login</h2>
-    <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
-        <div [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-            <label for="username">Username</label>
-            <input type="text"  name="username" [(ngModel)]="model.username" #username="ngModel" required />
-            <div *ngIf="f.submitted && !username.valid">Username is required</div>
-        </div>
-        <div  [ngClass]="{ 'has-error': f.submitted && !password.valid }">
-            <label for="password">Password</label>
-            <input type="password"  name="password" [(ngModel)]="model.password" #password="ngModel" required />
-            <div *ngIf="f.submitted && !password.valid"> Password is required</div>
-        </div>
-        <div >
-            <button type="submit">Login</button>
-            <a [routerLink]="['/register']" >Register</a>
-        </div>
-    </form>
+    </div>
+</form>

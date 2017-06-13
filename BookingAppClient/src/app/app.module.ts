@@ -25,8 +25,9 @@ import { NoopAnimationsModule, BrowserAnimationsModule } from '@angular/platform
 import { RegionComponent } from './region/region.component';
 import { PlaceComponent } from './place/place.component';
 import { DialogRegionComponent } from './region/dialog-region-component';
-import { DialogCountryComponent } from './country/dialog-country-component';
+//import { DialogCountryComponent } from './country/dialog-country-component';
 import { DialogPlaceComponent } from './place/dialog-place-component';
+import { DialogcountryComponent } from './dialogcountry/dialogcountry.component';
 
 @NgModule({
    declarations: [
@@ -44,9 +45,13 @@ import { DialogPlaceComponent } from './place/dialog-place-component';
     RegionComponent,
     PlaceComponent,
     DialogRegionComponent,
-    DialogCountryComponent,
+    DialogcountryComponent,
     DialogPlaceComponent
   ],
+  entryComponents:[
+    DialogRegionComponent,
+    DialogcountryComponent,
+    DialogPlaceComponent],
   imports: [
     BrowserModule,
     HttpModule,
@@ -58,9 +63,6 @@ import { DialogPlaceComponent } from './place/dialog-place-component';
   providers: [LocationService,  AuthenticationService,AuthGuard,RegisterService],
 
   bootstrap: [
-    AppComponent,
-    DialogCountryComponent,
-    DialogRegionComponent,
-    DialogPlaceComponent]
+    AppComponent]
 })
 export class AppModule { }

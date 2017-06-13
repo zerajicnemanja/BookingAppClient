@@ -4,12 +4,12 @@ import { Country } from './country.model';
 import { Observable } from "rxjs/Observable";
 import { HttpCountryService } from './country.http.service';
 import {MdDialog, MdDialogRef} from '@angular/material';
-import { DialogCountryComponent } from './dialog-country-component';
+import { DialogcountryComponent } from '../dialogcountry/dialogcountry.component';
 @Component({
   selector: 'app-country',
   templateUrl: './country.component.html',
   styleUrls: ['./country.component.css'],
-  providers: [HttpCountryService],
+  providers: [HttpCountryService]
 })
 export class CountryComponent implements OnInit {
 
@@ -25,7 +25,7 @@ export class CountryComponent implements OnInit {
       );
     }
     openAddDialog(){
-      let dialogRef= this.dialog.open(DialogCountryComponent);
+      let dialogRef= this.dialog.open(DialogcountryComponent);
       dialogRef.componentInstance.title = "Adding new Country"
       dialogRef.afterClosed().subscribe( (result:Country) => {
 
@@ -45,7 +45,7 @@ export class CountryComponent implements OnInit {
     editCountry(country:Country){
       console.log("Start editing "+ country.Name);
 
-      let dialogRef= this.dialog.open(DialogCountryComponent);
+      let dialogRef= this.dialog.open(DialogcountryComponent);
       dialogRef.componentInstance.title = "Editing Country"
       dialogRef.componentInstance.country = country;
       dialogRef.afterClosed().subscribe( (result:Country) => {
