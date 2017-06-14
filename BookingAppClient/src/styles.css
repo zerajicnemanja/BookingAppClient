@@ -21,7 +21,15 @@
 }
 
 .example-card {
-  width: 400px;
-  display: inline-block;
-  margin: 10px;
+    width: 400px;
+    display: inline-block;
+    margin: 10px;
+}
+
+.snackbar {
+    background-color: red
+}
+
+.error_msg {
+    color: red;
 }

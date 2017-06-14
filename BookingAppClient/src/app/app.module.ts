@@ -29,6 +29,7 @@ import { DialogPlaceComponent } from './place/dialog-place-component';
 import { AccommodationDialogComponent } from './accommodation-dialog/accommodation-dialog.component';
 import { DialogcountryComponent } from './dialogcountry/dialogcountry.component';
 import { SearchComponent } from './search/search.component';
+import { MySnackBarComponent } from "app/mysnackbar.component";
 
 @NgModule({
    declarations: [
@@ -49,12 +50,14 @@ import { SearchComponent } from './search/search.component';
     DialogcountryComponent,
     DialogPlaceComponent,
     SearchComponent,
+    MySnackBarComponent
   ],
   entryComponents:[
     DialogRegionComponent,
     DialogcountryComponent,
     DialogPlaceComponent,
-    AccommodationDialogComponent
+    AccommodationDialogComponent,
+    MySnackBarComponent
     ],
   imports: [
     BrowserModule,

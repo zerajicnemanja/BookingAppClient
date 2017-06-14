@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MdDialog } from '@angular/material';
+import { MdDialog} from '@angular/material';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { AuthenticationService } from 'app/services/authentication.service';
 
 @Component({
     selector: 'app-root',
@@ -14,10 +15,11 @@ export class AppComponent implements OnInit {
     username: string;
     isLoggedIn: boolean;
 
-    constructor(public dialog: MdDialog) { }
+    constructor(public dialog: MdDialog, public authService: AuthenticationService) { }
 
     ngOnInit(): void {
-        this.checkLogin()
+        this.checkLogin();
+
     }
 
     openLoginDialog() {
@@ -61,8 +63,14 @@ export class AppComponent implements OnInit {
         this.isLoggedIn = true;
     }
 
-    logout(){
-        localStorage.clear();
-        this.checkLogin();
+    logout() {
+
+        this.authService.logout().subscribe(
+            () => {
+                localStorage.clear();
+                this.checkLogin();
+            },
+            error => { alert("Logout failed!"); console.log(error); });
+
     }
 }
