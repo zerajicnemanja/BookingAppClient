@@ -1,3 +1,40 @@
-<p>
-  room works!
-</p>
+<div>
+    <h2 >{{title}}</h2>
+    <form #fo="ngForm" (ngSubmit)="onSubmit(fo.value, fo)" layout="column" >
+        <div>
+            <md-input-container>
+                <input mdInput placeholder="RoomNubmer" type="text" name="RoomNumber" required [ngModel]=room.RoomNumber>
+            </md-input-container>
+        </div>
+        <div>
+            <md-input-container>
+                <input mdInput placeholder="BedCount" type="number" name="BedCount" required [ngModel]=room.BedCount>
+            </md-input-container>
+        </div>
+        <div>
+
+            <md-input-container>
+                <input mdInput placeholder="Description" type="text" name="Description" required [ngModel]=room.Description>
+            </md-input-container>
+        </div>
+        <div>
+
+            <md-input-container>
+
+                <input mdInput placeholder="PricePerNight" type="number" name="PricePerNight" required [ngModel]=room.PricePerNight>
+            </md-input-container>
+        </div>
+       
+        <div>
+            <md-select id="Accommodation" name="Accommodation_Id"  placeholder="Acccommdation" [ngModel]=room.Accomodation_Id required>
+                <md-option *ngFor="let accommodation of accommodations" [value]="accommodation.Id">
+                    {{accommodation.Name}}
+                </md-option>
+            </md-select>
+        </div>
+        <div>
+
+            <button md-raised-button color="primary" type="submit">submit</button>
+        </div>
+    </form>
+</div>

@@ -1,22 +1,23 @@
 <button md-raised-button color="primary" (click)="openAddDialog()">Add Accommodation</button>
-<md-nav-list dense>
-    <h3 md-subheader>Accommodations</h3>
-    <md-list-item *ngFor="let accommodation of accommodations">
-        <button md-icon-button md-list-avatar [mdMenuTriggerFor]="menu">
-      <md-icon>more_vert</md-icon>
-    </button>
-        <md-menu #menu="mdMenu">
-            <button md-menu-item (click)="editAccommodation(accommodation)">
-          <md-icon>edit</md-icon>
-          <span>Edit</span>
-        </button>
-            <button md-menu-item (click)="deleteAccommodation(accommodation)">
-          <md-icon>delete</md-icon>
-          <span>Delete</span>
-        </button>
-        </md-menu>
-        <h4 md-line>{{accommodation.Name}}</h4>
-        <p md-line> {{accommodation.Adress}} </p>
-
-    </md-list-item>
-</md-nav-list>
+<h3 md-subheader>Accommodations</h3>
+<div  class="example-card" *ngFor="let accommodation of accommodations">
+    <md-card   >
+        <md-card-header >
+            <div md-card-avatar class="example-header-image"></div>
+            <md-card-title>{{accommodation.Name}}</md-card-title>
+            <md-card-subtitle>{{accommodation.Description}}</md-card-subtitle>
+        </md-card-header>
+        <img md-card-image src="https://exp.cdn-hotels.com/hotels/1000000/150000/140600/140596/140596_275_z.jpg">
+        <md-card-content>
+            <p>
+                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes
+                very well with mountainous terrain, the Shiba Inu was originally bred for hunting.
+            </p>
+        </md-card-content>
+        <md-card-actions>
+            <button md-button (click)="editAccommodation(accommodation)">Edit</button>
+            <button md-button (click)="deleteAccommodation(accommodation)">Delete</button>
+        </md-card-actions>
+    </md-card>
+    
+</div>

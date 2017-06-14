@@ -3,8 +3,8 @@ export class Room {
     }
     public Id: number;
     public RoomNumber: string;
-    public BedCount: string;
+    public BedCount: number;
     public Description: string;
-    public PricePerNight: string;
+    public PricePerNight: number;
     public Accomodation_Id: number;
 }

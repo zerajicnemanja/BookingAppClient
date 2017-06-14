@@ -17,7 +17,6 @@ import {AuthenticationService} from 'app/services/authentication.service';
 import { AccomodationComponent } from './accomodation/accomodation.component';
 import { AccomodationTypeComponent } from './accomodation-type/accomodation-type.component';
 import { RoomComponent } from './room/room.component';
-import { RoomReservationComponent } from './room-reservation/room-reservation.component';
 import { CommentComponent } from './comment/comment.component';
 import { CommentListComponent } from './comment-list/comment-list.component'
 import { MaterialModule} from '@angular/material';
@@ -29,7 +28,7 @@ import { DialogRegionComponent } from './region/dialog-region-component';
 import { DialogPlaceComponent } from './place/dialog-place-component';
 import { AccommodationDialogComponent } from './accommodation-dialog/accommodation-dialog.component';
 import { DialogcountryComponent } from './dialogcountry/dialogcountry.component';
-import { RoomDialogComponent } from './room-dialog/room-dialog.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
    declarations: [
@@ -41,7 +40,6 @@ import { RoomDialogComponent } from './room-dialog/room-dialog.component';
     AccomodationComponent,
     AccomodationTypeComponent,
     RoomComponent,
-    RoomReservationComponent,
     CommentComponent,
     CommentListComponent,
     RegionComponent,
@@ -50,7 +48,7 @@ import { RoomDialogComponent } from './room-dialog/room-dialog.component';
     AccommodationDialogComponent,
     DialogcountryComponent,
     DialogPlaceComponent,
-    RoomDialogComponent
+    SearchComponent,
   ],
   entryComponents:[
     DialogRegionComponent,
