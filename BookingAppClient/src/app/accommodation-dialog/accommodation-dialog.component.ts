@@ -54,8 +54,6 @@ public place:Place;
       return;
     }
     form.reset();
-    accommodation.Place_Id=this.place.Id;
-    accommodation.AccommodationType_Id=this.accomodationType.Id;
     
     this.dialogRef.close(accommodation);
   }

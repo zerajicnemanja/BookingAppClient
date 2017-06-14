@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
+import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Room } from 'app/models/room';
@@ -10,18 +10,27 @@ export class RoomService {
 
 
     addRoom(room: Room) {
-
+        const headers: Headers = new Headers();        
+        headers.append('Authorization','Bearer '+localStorage.getItem('id_token'));
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
 
 
     }
 
     deleteRoom(room: Room) {
-
+        const headers: Headers = new Headers();        
+        headers.append('Authorization','Bearer '+localStorage.getItem('id_token'));
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
 
     }
 
     updateRoom(room: Room) {
-
+        const headers: Headers = new Headers();        
+        headers.append('Authorization','Bearer '+localStorage.getItem('id_token'));
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
 
     }
 

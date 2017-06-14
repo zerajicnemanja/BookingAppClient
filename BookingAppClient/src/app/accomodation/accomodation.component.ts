@@ -60,7 +60,16 @@ export class AccomodationComponent implements OnInit {
       }
 
       result.Id = accommodation.Id;
-      this.accommodationService.updateAccommodation(result).sub
+      result.AppUser_Id=accommodation.AppUser_Id;
+      
+      this.accommodationService.updateAccommodation(result).subscribe(
+          ()=>{ 
+            console.log('Accommodation ' + result.Name + ' successfuly edited');
+            this.ngOnInit();
+          },
+          error => {alert("Close!"); console.log(error);}
+        );
+    
     });
 
 

@@ -10,8 +10,12 @@ export class AccommodationService {
     constructor(private http: Http, private locationService: LocationService) { }
 
     getAccommodations(): Observable<any> {
-
-        return this.http.get(this.locationService.RootLocation + "place/places").map(this.extractData);
+        const headers: Headers = new Headers();        
+        headers.append('Authorization','Bearer '+localStorage.getItem('id_token'));
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+        
+        return this.http.get(this.locationService.RootLocation + "accommodation/accommodations",opts).map(this.extractData);
 
 
     }
@@ -19,9 +23,10 @@ export class AccommodationService {
         const headers: Headers = new Headers();
         headers.append('Accept', 'application/json');
         headers.append('Content-type', 'application/json');
+        headers.append('Authorization','Bearer '+localStorage.getItem('id_token'));
         const opts: RequestOptions = new RequestOptions();
-
         opts.headers = headers;
+        
         return this.http.post(
             this.locationService.RootLocation + 'accommodation/accommodation',
             accomodation, opts);
@@ -29,8 +34,13 @@ export class AccommodationService {
     }
 
     deleteAccommodation(accommodation: Accommodation) {
+        const headers: Headers = new Headers();
+        headers.append('Authorization','Bearer '+localStorage.getItem('id_token'));
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
 
-        return this.http.delete(this.locationService.RootLocation + 'accommodation/accommodation/' + accommodation.Id);
+
+        return this.http.delete(this.locationService.RootLocation + 'accommodation/accommodation/' + accommodation.Id,opts);
 
     }
 
@@ -38,10 +48,13 @@ export class AccommodationService {
         const headers: Headers = new Headers();
         headers.append('Accept', 'application/json');
         headers.append('Content-type', 'application/json');
-
+        headers.append('Authorization','Bearer '+localStorage.getItem('id_token'));
+        
         const opts: RequestOptions = new RequestOptions();
         opts.headers = headers;
-        return this.locationService.RootLocation + 'acco'
+       return this.http.put(
+            this.locationService.RootLocation + 'accommodation/accommodation/'+accomodation.Id,
+            accomodation, opts);
 
     }
 

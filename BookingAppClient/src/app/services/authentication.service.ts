@@ -17,18 +17,6 @@ export class AuthenticationService {
     login(username: string, password: string) {
         
     }            
-    /*this.http.post('http://localhost:54042/oauth/token', `username=${username}&password=${password}&grant_type=password`)
-                    .map((response: Response) => {
-                let user = response.json();
-                if (user && user.token) {                
-                
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                    this.loggedIn=true;                
-                }
-            });
-            return this.loggedIn;
-    } */
-    
     logout() {
         localStorage.removeItem('currentUser');
     }
