@@ -42,7 +42,6 @@ export class DialogRegionComponent {
             return;
         }
         region.Country_Id = region.Country.Id;
-        region.Country = null;
         if (this.isEditing) {
             region.Id = this.selectedRegion.Id;
             this.httpRegionService.editRegion(region).subscribe(
