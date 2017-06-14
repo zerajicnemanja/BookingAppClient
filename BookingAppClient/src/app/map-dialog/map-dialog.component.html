@@ -1,0 +1,15 @@
+<div class="block-margin">
+    <agm-map #f [latitude]="lat" [longitude]="lng" [zoom]="16" (mapClick)="onClick($event)">
+        <agm-marker [latitude]="clickedLat" [longitude]="clickedLong" label="">
+            <agm-info-window [latitude]="clickedLat" [longitude]="clickedLong">
+                <span style="color:gray;">latitude: {{clickedLat}}</span>
+                <br/>
+                <span style="color:gray;">longitude: {{clickedLong}}</span>
+            </agm-info-window>
+        </agm-marker>
+    </agm-map>
+
+    <div class="center" style="margin-top: 10px">
+        <button md-raised-button type="submit" color="primary" [disabled]="clickedLat==undefined" (click)="setLocation()">Set location</button>
+    </div>
+</div>

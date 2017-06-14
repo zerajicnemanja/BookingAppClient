@@ -35,7 +35,7 @@ export class RegionComponent implements OnInit {
       if (result == undefined || null) {
         return;//case when you click outside the dialog
       }
-      this.snackbar.open('Region ' + result.Name + ' successfuly additng', "", { duration: 3000 });
+      this.snackbar.open('Region ' + result.Name + ' successfuly added', "", { duration: 3000 });
 
       this.ngOnInit();
 

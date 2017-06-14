@@ -1,0 +1,8 @@
+<div class="block-margin">
+    <agm-map #f [latitude]="lat" [longitude]="lng" [zoom]="16" (mapClick)="onClick($event)">
+        <agm-marker [latitude]="clickedLat" [longitude]="clickedLong" label=""></agm-marker>
+    </agm-map>
+    <div>
+        <p>Clicked latitude: {{clickedLat}} longitude: {{clickedLong}}</p>
+    </div>
+</div>

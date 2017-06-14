@@ -30,6 +30,11 @@
     background-color: red
 }
 
+body {
+    background: darkgrey;
+    color: white;
+}
+
 .error_msg {
     color: red;
 }
