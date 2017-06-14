@@ -9,7 +9,6 @@
         <div>
 
             <md-input-container>
-                <label>Description</label>
                 <input mdInput placeholder="Description" type="text" name="Description" required [ngModel]=accommodation.Description>
             </md-input-container>
         </div>
@@ -20,16 +19,18 @@
             </md-input-container>
         </div>
         <div>
-
             <md-input-container>
-
                 <input mdInput placeholder="Latitude" type="number" name="Latitude" required [ngModel]=accommodation.Latitude>
             </md-input-container>
         </div>
+
         <div>
             <md-input-container>
                 <input mdInput placeholder="Longitude" type="number" name="Longitude" required [ngModel]=accommodation.Longitude>
             </md-input-container>
+        </div>
+        <div>
+            <button md-raised-button color="primary" (click)="openMap()">Set location</button>
         </div>
         <div>
             <md-select id="Place" name="Place_Id" [(ngModel)]=place placeholder="Place">
@@ -46,7 +47,6 @@
             </md-select>
         </div>
         <div>
-
             <button md-raised-button color="primary" type="submit">submit</button>
         </div>
     </form>

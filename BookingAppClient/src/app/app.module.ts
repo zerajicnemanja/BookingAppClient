@@ -19,7 +19,7 @@ import { AccomodationTypeComponent } from './accomodation-type/accomodation-type
 import { RoomComponent } from './room/room.component';
 import { CommentComponent } from './comment/comment.component';
 import { CommentListComponent } from './comment-list/comment-list.component'
-import { MaterialModule} from '@angular/material';
+import { MaterialModule, OverlayContainer } from '@angular/material';
 import { NoopAnimationsModule, BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegionComponent } from './region/region.component';
 import { PlaceComponent } from './place/place.component';
@@ -30,7 +30,9 @@ import { AccommodationDialogComponent } from './accommodation-dialog/accommodati
 import { DialogcountryComponent } from './dialogcountry/dialogcountry.component';
 import { SearchComponent } from './search/search.component';
 import { MySnackBarComponent } from "app/mysnackbar.component";
-
+import { MapComponent } from './map/map.component';
+import { AgmCoreModule } from '@agm/core';
+import { MapDialogComponent } from './map-dialog/map-dialog.component';
 @NgModule({
    declarations: [
     AppComponent,
@@ -50,14 +52,17 @@ import { MySnackBarComponent } from "app/mysnackbar.component";
     DialogcountryComponent,
     DialogPlaceComponent,
     SearchComponent,
-    MySnackBarComponent
+    MySnackBarComponent,
+    MapComponent,
+    MapDialogComponent
   ],
   entryComponents:[
     DialogRegionComponent,
     DialogcountryComponent,
     DialogPlaceComponent,
     AccommodationDialogComponent,
-    MySnackBarComponent
+    MySnackBarComponent,
+    MapDialogComponent
     ],
   imports: [
     BrowserModule,
@@ -65,10 +70,18 @@ import { MySnackBarComponent } from "app/mysnackbar.component";
     FormsModule,
     MaterialModule,
     BrowserAnimationsModule,
-    routing
+    routing,
+    AgmCoreModule.forRoot({
+      
+      apiKey: 'AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk'
+    })
   ],
   providers: [LocationService,  AuthenticationService,AuthGuard,RegisterService],
 
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(overlayContainer: OverlayContainer) {
+    overlayContainer.themeClass = 'my-dark-theme';
+  }
+ }
