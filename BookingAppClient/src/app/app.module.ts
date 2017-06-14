@@ -30,6 +30,8 @@ import { DialogPlaceComponent } from './place/dialog-place-component';
 import { AccommodationDialogComponent } from './accommodation-dialog/accommodation-dialog.component';
 import { DialogcountryComponent } from './dialogcountry/dialogcountry.component';
 import { RoomDialogComponent } from './room-dialog/room-dialog.component';
+import { MySnackBarComponent } from "app/mysnackbar.component";
+
 
 @NgModule({
    declarations: [
@@ -50,13 +52,15 @@ import { RoomDialogComponent } from './room-dialog/room-dialog.component';
     AccommodationDialogComponent,
     DialogcountryComponent,
     DialogPlaceComponent,
-    RoomDialogComponent
+    RoomDialogComponent,
+    MySnackBarComponent
   ],
   entryComponents:[
     DialogRegionComponent,
     DialogcountryComponent,
     DialogPlaceComponent,
-    AccommodationDialogComponent
+    AccommodationDialogComponent,
+    MySnackBarComponent
     ],
   imports: [
     BrowserModule,

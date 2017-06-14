@@ -19,3 +19,11 @@
 .center {
     text-align: center;
 }
+
+.snackbar {
+    background-color: red
+}
+
+.error_msg {
+    color: red;
+}

@@ -26,7 +26,7 @@ export class AccomodationComponent implements OnInit {
     this.accommodationService.getAccommodations().subscribe((res: any) => {
       this.accommodations = res; console.log(this.accommodations)
     },
-      error => { alert("Unsuccessful fetch operation!"); console.log(error); }
+      error => { alert("Unsuccessful fetch operation! Accomodation"); console.log(error); }
     );
   }
 

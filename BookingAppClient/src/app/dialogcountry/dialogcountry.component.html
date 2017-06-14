@@ -9,4 +9,7 @@
         </md-input-container>
         <button md-raised-button color="primary" type="submit">submit</button>
     </form>
+    <div [hidden]="!errorMessage" class="error_msg">
+        {{errorMessage}}
+    </div>
 </div>
