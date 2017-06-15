@@ -24,7 +24,6 @@ import { NoopAnimationsModule, BrowserAnimationsModule } from '@angular/platform
 import { RegionComponent } from './region/region.component';
 import { PlaceComponent } from './place/place.component';
 import { DialogRegionComponent } from './region/dialog-region-component';
-//import { DialogCountryComponent } from './country/dialog-country-component';
 import { DialogPlaceComponent } from './place/dialog-place-component';
 import { AccommodationDialogComponent } from './accommodation-dialog/accommodation-dialog.component';
 import { DialogcountryComponent } from './dialogcountry/dialogcountry.component';
@@ -33,6 +32,8 @@ import { MySnackBarComponent } from "app/mysnackbar.component";
 import { MapComponent } from './map/map.component';
 import { AgmCoreModule } from '@agm/core';
 import { MapDialogComponent } from './map-dialog/map-dialog.component';
+import { AccommodationDetailsComponent } from "app/accommodation-details/accommodation-details.component";
+
 @NgModule({
    declarations: [
     AppComponent,
@@ -54,7 +55,8 @@ import { MapDialogComponent } from './map-dialog/map-dialog.component';
     SearchComponent,
     MySnackBarComponent,
     MapComponent,
-    MapDialogComponent
+    MapDialogComponent,
+    AccommodationDetailsComponent
   ],
   entryComponents:[
     DialogRegionComponent,
