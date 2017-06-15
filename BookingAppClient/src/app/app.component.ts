@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MdDialog} from '@angular/material';
+import { MdDialog } from '@angular/material';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthenticationService } from 'app/services/authentication.service';
@@ -16,17 +16,25 @@ export class AppComponent implements OnInit {
     isLoggedIn: boolean;
 
     navLinks = [
-        { route: ['/country'],
-          label: "Country"
+        {
+            route: ['/country'],
+            label: "Country"
         },
-        { route: ['/region'],
-          label: "Region"
+        {
+            route: ['/region'],
+            label: "Region"
         },
-        { route: ['/place'],
-          label: "Place"
+        {
+            route: ['/place'],
+            label: "Place"
         },
-        { route: ['/accomodation'],
-          label: "Accomodation"
+        {
+            route: ['/accomodation'],
+            label: "Accomodation"
+        },
+        {
+            route: ['/accomodation_type'],
+            label: "Accomodation Type"
         }
     ]
     constructor(public dialog: MdDialog, public authService: AuthenticationService) { }

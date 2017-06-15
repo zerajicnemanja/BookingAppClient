@@ -43,7 +43,7 @@ export class AccommodationDialogComponent implements OnInit {
             this.places = result;
         });
 
-        this.accomTypeService.getAccommodations().subscribe((result: Array<AccommodationType>) => {
+        this.accomTypeService.getAccTypes().subscribe((result: Array<AccommodationType>) => {
             this.types = result;
         }
         );

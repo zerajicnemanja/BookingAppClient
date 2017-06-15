@@ -1,36 +1,58 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
-import { FormsModule } from '@angular/forms';
+import { Http, Headers, Response, RequestOptions } from '@angular/http';
+import { FormsModule, NgForm } from '@angular/forms';
+import { AccommodationType } from '../models/accommodation-type';
+import { AccommodationTypeService } from '../services/accom-type-service';
+import { MdSnackBar } from '@angular/material';
 
 
 @Component({
-  selector: 'app-accomodation-type',
-  templateUrl: './accomodation-type.component.html',
-  styleUrls: ['./accomodation-type.component.css']
+    selector: 'app-accomodation-type',
+    templateUrl: './accomodation-type.component.html',
+    styleUrls: ['./accomodation-type.component.css'],
+    providers: [AccommodationTypeService]
 })
 export class AccomodationTypeComponent implements OnInit {
-    model: any = {};
 
-  constructor(private http:Http) { }
+    errorMessage: string;
+    accTypes: Array<AccommodationType>;
+    constructor(private accTypeService: AccommodationTypeService, private snackbar: MdSnackBar) { }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+        this.accTypeService.getAccTypes().subscribe(
+            res => this.accTypes = res,
+            error => { alert("Unsuccessful fetch operation! AccomodationType"); console.log(error); })
+    }
 
-  save(){
-       let headers = new Headers();
-       headers.append('Content-Type', 'application/x-www-form-urlencoded'); 
+    save(accType: AccommodationType, f: NgForm) {
 
-       this.http.post('http://localhost:54042/api/AccommodationType/AddType', `Name=${this.model.type}`,    {headers:headers})
-       .subscribe(
-        response => {
-        // alert("OK");
-        },
-        error => {
-         // alert(error.text());
-          console.log(error.text());
-        }
-      );
+        this.accTypeService.postType(accType).subscribe(
+            () => {
+                console.log('AccomodationType ' + accType.Name + ' successfuly posted');
+                this.snackbar.open('AccomodationType ' + accType.Name + ' successfuly added', "", { duration: 3000 });
 
-  }
+                this.errorMessage = undefined;
+                f.resetForm();
+                this.ngOnInit();
+            },
+
+            (error: any) => {
+                this.errorMessage = error.json().Message;
+                console.log(error);
+            }
+        );
+    }
+
+    delete(accType) {
+        console.log("Start deleting " + accType.Name);
+        this.accTypeService.delete(accType).subscribe(
+            () => {
+                console.log('AccomodationType ' + accType.Name + ' successfuly deleted');
+                this.snackbar.open('AccomodationType ' + accType.Name + ' successfuly deleted', "", { duration: 3000 });
+                this.ngOnInit();
+            },
+            error => { alert("Unsuccessful deleting operation!"); console.log(error); }
+        );
+    }
 
 }

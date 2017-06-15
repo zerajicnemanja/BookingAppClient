@@ -1,13 +1,20 @@
-<h2>Add accomodation type</h2>
-    <form type="form" (ngSubmit)="f.form.valid && save()" #f="ngForm" novalidate>
-        <div [ngClass]="{ 'has-error': f.submitted && !type.valid }">
-            <label for="type">Type name:</label>
-            <input type="text"  name="type" [(ngModel)]="model.type" #type="ngModel" required />
-            <div *ngIf="f.submitted && !type.valid">Type is required</div>
-        </div>
-       
-        <div >
-            <button type="submit">Save</button>
-           
-        </div>
+<div class="block-margin">
+    <form #fo="ngForm" (ngSubmit)="save(fo.value, fo)">
+        <md-input-container>
+            <input mdInput placeholder="Type Name" type="text" name="Name" required ngModel>
+        </md-input-container>
+        <button md-raised-button color="primary" type="submit">submit</button>
     </form>
+    <div [hidden]="!errorMessage" class="error_msg">
+        {{errorMessage}}
+    </div>
+    <md-nav-list dense>
+        <h3 md-subheader>Accomodation types</h3>
+        <md-list-item *ngFor="let accType of accTypes">
+            <button md-icon-button md-list-avatar (click)="delete(accType)">
+                 <md-icon>delete</md-icon>
+            </button>
+            <h4 md-line>{{accType.Name}}</h4>
+        </md-list-item>
+    </md-nav-list>
+</div>

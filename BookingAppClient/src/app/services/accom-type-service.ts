@@ -4,12 +4,13 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Accommodation } from 'app/models/accommodation';
 import { LocationService } from '../location.services';
+import { AccommodationType } from '../models/accommodation-type';
 
 @Injectable()
 export class AccommodationTypeService {
     constructor(private http: Http, private locationService: LocationService) { }
 
-    getAccommodations(): Observable<any> {
+    getAccTypes(): Observable<any> {
         const headers: Headers = new Headers();        
         headers.append('Authorization','Bearer '+localStorage.getItem('id_token'));
         const opts: RequestOptions = new RequestOptions();
@@ -19,5 +20,23 @@ export class AccommodationTypeService {
     }
      private extractData(res: Response) {
         return res.json() || [];
+    }
+
+    postType(accType:AccommodationType){
+        const headers: Headers = new Headers();        
+        headers.append('Authorization','Bearer '+localStorage.getItem('id_token'));
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.post(this.locationService.RootLocation+ 'type/type', accType, opts);
+    }
+
+    delete(accType:AccommodationType){
+        const headers: Headers = new Headers();        
+        headers.append('Authorization','Bearer '+ localStorage.getItem('id_token'));
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.delete(this.locationService.RootLocation+ 'type/type/'+ accType.Id, opts);
     }
 }
