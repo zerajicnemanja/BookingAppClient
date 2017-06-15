@@ -25,12 +25,12 @@ export class AccommodationDetailsComponent implements OnInit {
   private rooms: Array<Room>;
   public room: Room;
 
-
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private activatedRoute: ActivatedRoute,
     private accommodationService: AccommodationService,
     private roomService: RoomService) {
-    this.room = new Room();
+      this.room = new Room();
     activatedRoute.params.subscribe(params => {
       this.Id = params["Id"];
       this.ngOnInit();
@@ -95,8 +95,8 @@ export class AccommodationDetailsComponent implements OnInit {
   }
 
   onSubmit(room: Room, form: NgForm) {
-  room.Accomodation_Id=this.room.Accomodation_Id;
-  
+    room.Accomodation_Id = this.room.Accomodation_Id;
+
   }
 
 }

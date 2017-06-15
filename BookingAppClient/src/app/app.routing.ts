@@ -15,7 +15,7 @@ const appRoutes: Routes = [
     { path: 'place', component: PlaceComponent },
     { path: 'accomodation', component: AccomodationComponent },
     { path: 'accomodation_type', component: AccomodationTypeComponent },
-    {path:'accommodation-details/:Id',component:AccommodationDetailsComponent}
+    { path: 'accommodation-details/:Id', component: AccommodationDetailsComponent }
 
 ];
 

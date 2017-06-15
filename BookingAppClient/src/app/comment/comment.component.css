@@ -1,0 +1,24 @@
+.comment-container{
+       width: 600px;
+}
+
+.center{
+       margin:0 auto;
+}
+
+
+.comment-input{
+    width: 100%;
+    height: 100px;
+}
+
+.bordered-comment{
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    width: 100%;
+    min-height: 50px;
+    margin-top: 10px;
+    word-wrap: break-word;
+    padding: 5px;
+    text-align: left
+}
