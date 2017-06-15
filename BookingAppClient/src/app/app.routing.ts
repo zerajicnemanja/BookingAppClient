@@ -5,6 +5,7 @@ import { CountryComponent } from './country/country.component';
 import { RegionComponent } from "app/region/region.component";
 import { PlaceComponent } from "app/place/place.component";
 import { AccomodationComponent } from 'app/accomodation/accomodation.component';
+import { AccommodationDetailsComponent } from "app/accommodation-details/accommodation-details.component";
 
 const appRoutes: Routes = [
     // { path: 'country', component: CountryComponent,canActivate:[AuthGuard]},
@@ -12,6 +13,7 @@ const appRoutes: Routes = [
     { path: 'region', component: RegionComponent },
     { path: 'place', component: PlaceComponent },
     { path: 'accomodation', component: AccomodationComponent },
+    {path:'accommodation-details/:Id',component:AccommodationDetailsComponent}
 
 ];
 

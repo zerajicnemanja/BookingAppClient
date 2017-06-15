@@ -2,11 +2,12 @@
     <button md-raised-button color="primary" (click)="openAddDialog()">Add Accommodation</button>
     <h4>Accommodations</h4>
     <div class="example-card" *ngFor="let accommodation of accommodations">
-        <md-card>
+        <md-card >
             <md-card-header>
                 <div md-card-avatar class="example-header-image"></div>
                 <md-card-title>{{accommodation.Name}}</md-card-title>
                 <md-card-subtitle>{{accommodation.Description}}</md-card-subtitle>
+                <button (click)=accommodationDetails(accommodation)>details</button>
             </md-card-header>
             <img md-card-image src="https://exp.cdn-hotels.com/hotels/1000000/150000/140600/140596/140596_275_z.jpg">
             <md-card-content>
