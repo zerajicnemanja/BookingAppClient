@@ -33,6 +33,7 @@ import { MapComponent } from './map/map.component';
 import { AgmCoreModule } from '@agm/core';
 import { MapDialogComponent } from './map-dialog/map-dialog.component';
 import { AccommodationDetailsComponent } from "app/accommodation-details/accommodation-details.component";
+import {RatingModule} from "ngx-rating"
 
 @NgModule({
    declarations: [
@@ -69,6 +70,7 @@ import { AccommodationDetailsComponent } from "app/accommodation-details/accommo
     RegisterComponent
     ],
   imports: [
+    RatingModule,
     BrowserModule,
     HttpModule,
     FormsModule,

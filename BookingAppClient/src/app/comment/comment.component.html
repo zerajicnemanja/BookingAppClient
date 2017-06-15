@@ -1,3 +1,36 @@
-<p>
-  comment works!
-</p>
+
+<md-card class="comment-container center">
+  <md-card-header>
+  </md-card-header>
+  <md-card-content>
+    <md-input-container class="comment-input">
+      <textarea mdInput placeholder="Comment" class="comment-input"></textarea>
+    </md-input-container>
+  </md-card-content>
+  <md-card-actions>
+    <button md-button>Comment</button>
+  </md-card-actions>
+  <rating [(ngModel)]="rating"
+        #r
+        [max]="5"
+        fullIcon="★"
+        emptyIcon="☆"
+        (click)="onClick(r)">
+</rating>
+</md-card>
+
+<div style="margin-top: 20px">
+<md-card class="comment-container center">
+  <md-card-header>
+    <md-card-title>Comments</md-card-title>
+  </md-card-header>
+  <md-card-content>
+    <div *ngFor="let com of comments" class="bordered-comment">
+      <span>{{com.Text}}</span>
+    </div>
+    
+  </md-card-content>
+  <md-card-actions>
+  </md-card-actions>
+</md-card>
+</div>

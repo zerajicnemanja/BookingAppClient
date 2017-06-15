@@ -17,7 +17,6 @@ export class AccommodationDetailsComponent implements OnInit {
   public accommodation: Accommodation;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private accommodationService: AccommodationService) {
-
     activatedRoute.params.subscribe(params => {
       this.Id = params["Id"];
       this.ngOnInit();
