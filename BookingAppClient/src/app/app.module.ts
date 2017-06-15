@@ -16,7 +16,6 @@ import {RegisterService} from 'app/services/register.service';
 import {AuthenticationService} from 'app/services/authentication.service';
 import { AccomodationComponent } from './accomodation/accomodation.component';
 import { AccomodationTypeComponent } from './accomodation-type/accomodation-type.component';
-import { RoomComponent } from './room/room.component';
 import { CommentComponent } from './comment/comment.component';
 import { CommentListComponent } from './comment-list/comment-list.component'
 import { MaterialModule, OverlayContainer } from '@angular/material';
@@ -43,7 +42,6 @@ import { AccommodationDetailsComponent } from "app/accommodation-details/accommo
     HomeComponent,
     AccomodationComponent,
     AccomodationTypeComponent,
-    RoomComponent,
     CommentComponent,
     CommentListComponent,
     RegionComponent,
