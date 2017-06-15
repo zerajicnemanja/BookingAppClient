@@ -6,6 +6,8 @@ import { Accommodation } from 'app/models/accommodation';
 import { MdDialog } from '@angular/material';
 import { AccommodationService } from '../services/accommodation-service';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { AccommodationDetailsComponent } from "app/accommodation-details/accommodation-details.component";
+import { Router } from "@angular/router";
 
 
 @Component({
@@ -19,7 +21,7 @@ export class AccomodationComponent implements OnInit {
   accommodations: Array<Accommodation>;
 
 
-  constructor(private accommodationService: AccommodationService, public dialog: MdDialog) { }
+  constructor(private accommodationService: AccommodationService, public dialog: MdDialog,private router:Router) { }
 
   ngOnInit() {
 
@@ -84,6 +86,12 @@ export class AccomodationComponent implements OnInit {
       error => { alert("Unsuccessful deleting operation!"); console.log(error); }
 
     );
+  }
+
+  accommodationDetails(accommodation:Accommodation){
+    this.router.navigate(['/accommodation-details/'+accommodation.Id]);
+
+  
   }
 
 }
