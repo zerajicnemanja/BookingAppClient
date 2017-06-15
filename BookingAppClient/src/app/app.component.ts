@@ -15,6 +15,20 @@ export class AppComponent implements OnInit {
     username: string;
     isLoggedIn: boolean;
 
+    navLinks = [
+        { route: ['/country'],
+          label: "Country"
+        },
+        { route: ['/region'],
+          label: "Region"
+        },
+        { route: ['/place'],
+          label: "Place"
+        },
+        { route: ['/accomodation'],
+          label: "Accomodation"
+        }
+    ]
     constructor(public dialog: MdDialog, public authService: AuthenticationService) { }
 
     ngOnInit(): void {

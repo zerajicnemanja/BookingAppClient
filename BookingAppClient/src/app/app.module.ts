@@ -62,7 +62,9 @@ import { MapDialogComponent } from './map-dialog/map-dialog.component';
     DialogPlaceComponent,
     AccommodationDialogComponent,
     MySnackBarComponent,
-    MapDialogComponent
+    MapDialogComponent,
+    LoginComponent,
+    RegisterComponent
     ],
   imports: [
     BrowserModule,
