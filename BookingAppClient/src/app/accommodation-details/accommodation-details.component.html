@@ -1,3 +1,43 @@
-<p>
+<div>
+    <h3>Rooms</h3>
 
-</p>
+    <form #fo="ngForm" (ngSubmit)="onSubmit(fo.value, fo)">
+        <md-input-container>
+            <input mdInput placeholder="RoomNubmer" type="text" name="RoomNumber" required [ngModel]=room.RoomNumber>
+        </md-input-container>
+        <md-input-container>
+            <input mdInput placeholder="BedCount" type="number" name="BedCount" required [ngModel]=room.BedCount>
+        </md-input-container>
+
+        <md-input-container>
+            <input mdInput placeholder="Description" type="text" name="Description" required [ngModel]=room.Description>
+        </md-input-container>
+
+        <md-input-container>
+
+            <input mdInput placeholder="PricePerNight" type="number" name="PricePerNight" required [ngModel]=room.PricePerNight>
+        </md-input-container>
+        <button md-raised-button color="primary" type="submit">Save</button>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>RoomNumber</th>
+                <th>BedCount</th>
+                <th>Description</th>
+                <th>PricePerNight</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let room of rooms">
+                <td>{{room.RoomNumber}}</td>
+                <td>{{room.BedCount}}</td>
+                <td>{{room.Description}}</td>
+                <td>{{room.PricePerNight}}</td>
+                <td><button *ngIf="permitDelete" (click)="deleteRoom(room)"> Delete </button></td>
+                <td><button *ngIf="permitEdit" (click)="editRoom(room)">Edit</button></td>
+                <td><button *ngIf="permitReserve" (click)="reserveRoom(room)">Reserve</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

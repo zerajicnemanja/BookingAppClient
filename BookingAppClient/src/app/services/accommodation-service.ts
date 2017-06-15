@@ -23,7 +23,9 @@ export class AccommodationService {
     }
 
     getAccommodation(id:number): Observable<any> {
-        const headers: Headers = new Headers();        
+        const headers: Headers = new Headers();    
+         headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');    
         headers.append('Authorization','Bearer '+localStorage.getItem('id_token'));
         const opts: RequestOptions = new RequestOptions();
         opts.headers = headers;
