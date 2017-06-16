@@ -40,7 +40,7 @@ export class RoomService {
         headers.append('Authorization','Bearer '+localStorage.getItem('id_token'));
         const opts: RequestOptions = new RequestOptions();
         opts.headers = headers;
-        return this.http.delete(this.locationService.RootLocation + "room/room" + room.Id,opts);
+        return this.http.delete(this.locationService.RootLocation + "room/room/" + room.Id,opts);
 
     }
 

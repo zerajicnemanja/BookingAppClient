@@ -1,0 +1,14 @@
+<h2> Reservation</h2>
+
+<form #fo="ngForm" (ngSubmit)="onSubmit(fo)">
+  <div>
+    <label> Start date</label>
+    <material-datepicker [(date)]="reservation.StartDate" name="StartDate" required></material-datepicker>
+  </div>
+  <div>
+    <label> End date</label>
+    <material-datepicker [(date)]="reservation.EndTime"  name="EndTime" required></material-datepicker>
+
+  </div>
+  <button type="submit"> Save</button>   
+</form>
