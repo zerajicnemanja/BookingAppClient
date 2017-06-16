@@ -22,6 +22,7 @@ export class AccommodationDetailsComponent implements OnInit {
   private permitDelete: boolean = false;
   private permitAdd: boolean = false;
   private permitReserve: boolean = false;
+  private edit=false;
   private rooms: Array<Room>;
   public room: Room;
 
@@ -64,7 +65,9 @@ export class AccommodationDetailsComponent implements OnInit {
   getPermitions() {
     let role = localStorage.getItem("role");
     if (role == "Admin") {
+      this.permitAdd = true;
       this.permitDelete = true;
+      this.permitEdit = true;
 
     } else if (role == "Manager") {
       this.permitAdd = true;
@@ -85,10 +88,12 @@ export class AccommodationDetailsComponent implements OnInit {
 
   deleteRoom(room: Room) {
 
+
   }
 
-  editRoom(room: Room) {
-
+  editRoom(editingRoom: Room) {
+    this.edit=true;
+    this.room=editingRoom;
   }
   reserveRoom(room: Room) {
 
@@ -96,7 +101,18 @@ export class AccommodationDetailsComponent implements OnInit {
 
   onSubmit(room: Room, form: NgForm) {
     room.Accomodation_Id = this.room.Accomodation_Id;
-
+    room.Id=this.room.Id;
+    if(this.edit=true){
+      this.roomService.updateRoom(room).subscribe(()=>
+      {console.log("OK")},
+      error=>{
+        console.log(error);
+      });
+    }else{
+      this.roomService.addRoom(room);
+    }
+    form.reset();
+    this.ngOnInit();
   }
 
 }
