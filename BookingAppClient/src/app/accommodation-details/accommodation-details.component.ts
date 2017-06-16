@@ -15,7 +15,7 @@ import { ReservationService } from "app/services/reservation-service";
   selector: 'app-accommodation-details',
   templateUrl: './accommodation-details.component.html',
   styleUrls: ['./accommodation-details.component.css'],
-  providers: [AccommodationService, RoomService,ReservationService]
+  providers: [AccommodationService, RoomService, ReservationService]
 
 
 })
@@ -114,7 +114,7 @@ export class AccommodationDetailsComponent implements OnInit {
     });
     dialogRef.componentInstance.title = "New reservation";
     dialogRef.afterClosed().subscribe((result: Reservation) => {
-      result.Room_Id=reservationRoom.Id;
+      result.Room_Id = reservationRoom.Id;
       console.log(result);
       this.reservationService.addReservation(result).subscribe(() => {
         console.log('Ok')
@@ -125,23 +125,30 @@ export class AccommodationDetailsComponent implements OnInit {
 
     },
       error => {
-
+        console.log(error);
       });
   }
 
   onSubmit(room: Room, form: NgForm) {
-    room.Accomodation_Id = this.room.Accomodation_Id;
-    room.Id = this.room.Id;
-    if (this.edit = true) {
+   
+    room.Accomodation_Id = this.accommodation.Id;
+    if (this.edit) {
+      room.Id = this.room.Id;
       this.roomService.updateRoom(room).subscribe(() =>
       { console.log("OK") },
         error => {
           console.log(error);
         });
     } else {
-      this.roomService.addRoom(room);
+      this.roomService.addRoom(room).subscribe(
+        () => {
+          console.log("OK")
+        },
+        error => {
+          console.log(error);
+        });
     }
-    form.reset();
+    form.resetForm();
     this.ngOnInit();
   }
 

@@ -4,6 +4,8 @@
 /*@import '~@angular/material/prebuilt-themes/pink-bluegrey.css';*/
 
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import '~primeng/resources/themes/omega/theme.css';
+@import '~primeng/resources/primeng.min.css';
 .example-icon {
     padding: 0 14px;
 }

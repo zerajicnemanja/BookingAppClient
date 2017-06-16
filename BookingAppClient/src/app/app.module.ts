@@ -34,9 +34,10 @@ import { MapDialogComponent } from './map-dialog/map-dialog.component';
 import { AccommodationDetailsComponent } from "app/accommodation-details/accommodation-details.component";
 import { RatingModule} from "ngx-rating";
 import { ReservationDialogComponent } from './reservation-dialog/reservation-dialog.component'
-import {CalendarModule} from 'primeng/primeng';
 import { DatepickerModule } from 'angular2-material-datepicker'
-
+import { ButtonModule } from "primeng/components/button/button";
+import { NotificationService } from './services/notification.service';
+import { PrimeMode } from './prime.mod';
 @NgModule({
    declarations: [
     AppComponent,
@@ -85,7 +86,7 @@ import { DatepickerModule } from 'angular2-material-datepicker'
       
       apiKey: 'AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk'
     }),
-    ButtonModule
+    PrimeMode
   ],
   providers: [LocationService,  AuthenticationService,AuthGuard,RegisterService,NotificationService],
 

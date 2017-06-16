@@ -18,7 +18,7 @@
             <input mdInput placeholder="PricePerNight" type="number" name="PricePerNight" required [ngModel]=room.PricePerNight>
         </md-input-container>
         <button md-raised-button color="primary" type="submit">Save</button>
-        
+
     </form>
     <table>
         <thead>
@@ -43,6 +43,13 @@
     </table>
 </div>
 
+<p-dataTable [value]="rooms" sortMode="multiple">
+    <p-column field="RoomNumber" header="RoomNumber" [sortable]="true" [filter]="true"></p-column>
+    <p-column field="BedCount" header="BedCount" [sortable]="true"></p-column>
+    <p-column field="Description" header="Description" [sortable]="true"></p-column>
+    <p-column field="PricePerNight" header="PricePerNight" [sortable]="true"></p-column>
+</p-dataTable>
+
 <div>
-  <!--  <app-comment [accomodationId]="Id"></app-comment>-->
+    <app-comment [accomodationId]="Id"></app-comment>
 </div>
