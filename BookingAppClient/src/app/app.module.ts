@@ -33,7 +33,8 @@ import { AgmCoreModule } from '@agm/core';
 import { MapDialogComponent } from './map-dialog/map-dialog.component';
 import { AccommodationDetailsComponent } from "app/accommodation-details/accommodation-details.component";
 import {RatingModule} from "ngx-rating"
-
+import {ButtonModule} from 'primeng/primeng';
+import { NotificationService } from './services/notification.service';
 @NgModule({
    declarations: [
     AppComponent,
@@ -78,9 +79,10 @@ import {RatingModule} from "ngx-rating"
     AgmCoreModule.forRoot({
       
       apiKey: 'AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk'
-    })
+    }),
+    ButtonModule
   ],
-  providers: [LocationService,  AuthenticationService,AuthGuard,RegisterService],
+  providers: [LocationService,  AuthenticationService,AuthGuard,RegisterService,NotificationService],
 
   bootstrap: [AppComponent]
 })

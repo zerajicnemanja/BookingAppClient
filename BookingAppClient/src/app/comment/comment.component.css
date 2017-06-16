@@ -17,9 +17,8 @@
     width: 100%;
     min-height: 50px;
     margin-top: 10px;
-    word-wrap: break-word;
     padding: 5px;
-    text-align: left
+    text-align: left;
 }
 
 .div_rate {
@@ -44,4 +43,8 @@
     position: absolute;
     margin-right: 15px;
     right: 0;
+}
+
+.commemt_text{
+    word-wrap: break-word;
 }

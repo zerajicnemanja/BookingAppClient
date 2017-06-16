@@ -3,12 +3,12 @@
     </md-card-header>
     <md-card-content>
         <md-input-container class="comment-input">
-            <textarea mdInput placeholder="Comment" class="comment-input"></textarea>
+            <textarea mdInput placeholder="Comment" class="comment-input" [(ngModel)]="comment.Text"></textarea>
         </md-input-container>
     </md-card-content>
     <div class="div_rate">
-        <button md-raised-button color="primary" class="button_left">Comment</button>
-        <rating class="right" [(ngModel)]="rating" #r [max]="5" fullIcon="★" emptyIcon="☆" (click)="onClick(r)" [titles]="['1', '2', '3', '4', '5']">
+        <button md-raised-button color="primary" class="button_left" (click)="onClick()">Comment</button>
+        <rating class="right" [(ngModel)]="comment.Rate" #r [max]="5" [required]="true" fullIcon="★" emptyIcon="☆" [titles]="['1', '2', '3', '4', '5']">
         </rating>
     </div>
 
@@ -21,8 +21,10 @@
         </md-card-header>
         <md-card-content>
             <div *ngFor="let com of comments" class="bordered-comment">
-                <span class="comment_star">4★</span>
-                <span>{{com.Text}}</span>
+                <span class="comment_star">{{com.Rate}}★</span>
+                <div style="margin-right: 15px; ">
+                    <span class="commemt_text">{{com.Text}}</span>
+                </div>
             </div>
         </md-card-content>
     </md-card>
