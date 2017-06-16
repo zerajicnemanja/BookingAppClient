@@ -8,7 +8,6 @@ import { HttpPlaceService } from '../place/place.http.service';
 import { AccommodationTypeService } from '../services/accom-type-service';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { MapDialogComponent } from '../map-dialog/map-dialog.component';
-
 @Component({
     selector: 'app-accommodation-dialog',
     templateUrl: './accommodation-dialog.component.html',
@@ -63,7 +62,7 @@ export class AccommodationDialogComponent implements OnInit {
         let dialogRef = this.dialog.open(MapDialogComponent);
         dialogRef.afterClosed().subscribe((res) => {
             console.log("Upesno zatvoren map dialog");
-            if(res == undefined){
+            if (res == undefined) {
                 return;
             }
             this.accommodation.Latitude = res.lat;

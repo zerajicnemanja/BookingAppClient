@@ -40,18 +40,18 @@ export class RoomService {
         headers.append('Authorization','Bearer '+localStorage.getItem('id_token'));
         const opts: RequestOptions = new RequestOptions();
         opts.headers = headers;
-        return this.http.delete(this.locationService.RootLocation + "room/room" + room.Id,opts);
+        return this.http.delete(this.locationService.RootLocation + "room/room/" + room.Id,opts);
 
     }
 
     updateRoom(room: Room) {
         const headers: Headers = new Headers();        
-        headers.append('Accept', 'application/json');
         headers.append('Content-type', 'application/json');
         headers.append('Authorization','Bearer '+localStorage.getItem('id_token'));
         const opts: RequestOptions = new RequestOptions();
         opts.headers = headers;
-
+let path=this.locationService.RootLocation + 'room/room/'+room.Id;
+let a=1;
          return this.http.put(
             this.locationService.RootLocation + 'room/room/'+room.Id,
             room, opts);

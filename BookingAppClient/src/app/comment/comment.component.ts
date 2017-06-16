@@ -17,12 +17,12 @@ export class CommentComponent implements OnInit {
 
   ngOnInit() {
     this.rating = 3;
-    this.commentService.getCommentForAccs(this.accomodationId).subscribe(
+    /*this.commentService.getCommentForAccs(this.accomodationId).subscribe(
        res =>{ 
          this.comments = res},
 
        error => { alert("Unsuccessful fetch operation! Comments"); console.log(error); }
-    )
+    )*/
   }
 
   onClick(res:any){
