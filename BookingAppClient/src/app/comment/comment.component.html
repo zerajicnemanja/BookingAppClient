@@ -1,36 +1,29 @@
-
 <md-card class="comment-container center">
-  <md-card-header>
-  </md-card-header>
-  <md-card-content>
-    <md-input-container class="comment-input">
-      <textarea mdInput placeholder="Comment" class="comment-input"></textarea>
-    </md-input-container>
-  </md-card-content>
-  <md-card-actions>
-    <button md-button>Comment</button>
-  </md-card-actions>
-  <rating [(ngModel)]="rating"
-        #r
-        [max]="5"
-        fullIcon="★"
-        emptyIcon="☆"
-        (click)="onClick(r)">
-</rating>
+    <md-card-header>
+    </md-card-header>
+    <md-card-content>
+        <md-input-container class="comment-input">
+            <textarea mdInput placeholder="Comment" class="comment-input"></textarea>
+        </md-input-container>
+    </md-card-content>
+    <div class="div_rate">
+        <button md-raised-button color="primary" class="button_left">Comment</button>
+        <rating class="right" [(ngModel)]="rating" #r [max]="5" fullIcon="★" emptyIcon="☆" (click)="onClick(r)" [titles]="['1', '2', '3', '4', '5']">
+        </rating>
+    </div>
+
 </md-card>
 
 <div style="margin-top: 20px">
-<md-card class="comment-container center">
-  <md-card-header>
-    <md-card-title>Comments</md-card-title>
-  </md-card-header>
-  <md-card-content>
-    <div *ngFor="let com of comments" class="bordered-comment">
-      <span>{{com.Text}}</span>
-    </div>
-    
-  </md-card-content>
-  <md-card-actions>
-  </md-card-actions>
-</md-card>
+    <md-card class="comment-container center">
+        <md-card-header>
+            <md-card-title>Comments</md-card-title>
+        </md-card-header>
+        <md-card-content>
+            <div *ngFor="let com of comments" class="bordered-comment">
+                <span class="comment_star">4★</span>
+                <span>{{com.Text}}</span>
+            </div>
+        </md-card-content>
+    </md-card>
 </div>
