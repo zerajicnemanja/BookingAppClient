@@ -32,9 +32,11 @@ import { MapComponent } from './map/map.component';
 import { AgmCoreModule } from '@agm/core';
 import { MapDialogComponent } from './map-dialog/map-dialog.component';
 import { AccommodationDetailsComponent } from "app/accommodation-details/accommodation-details.component";
-import {RatingModule} from "ngx-rating"
-import {ButtonModule} from 'primeng/primeng';
-import { NotificationService } from './services/notification.service';
+import { RatingModule} from "ngx-rating";
+import { ReservationDialogComponent } from './reservation-dialog/reservation-dialog.component'
+import {CalendarModule} from 'primeng/primeng';
+import { DatepickerModule } from 'angular2-material-datepicker'
+
 @NgModule({
    declarations: [
     AppComponent,
@@ -56,9 +58,11 @@ import { NotificationService } from './services/notification.service';
     MySnackBarComponent,
     MapComponent,
     MapDialogComponent,
-    AccommodationDetailsComponent
+    AccommodationDetailsComponent,
+    ReservationDialogComponent
   ],
   entryComponents:[
+    ReservationDialogComponent,
     DialogRegionComponent,
     DialogcountryComponent,
     DialogPlaceComponent,
@@ -69,6 +73,7 @@ import { NotificationService } from './services/notification.service';
     RegisterComponent
     ],
   imports: [
+    DatepickerModule,
     RatingModule,
     BrowserModule,
     HttpModule,

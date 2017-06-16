@@ -30,6 +30,9 @@ export class CommentComponent implements OnInit {
 
       error => { alert("Unsuccessful fetch operation! Comments"); console.log(error); }
     )
+
+    this.rating = 3;
+
   }
 
   onClick() {
