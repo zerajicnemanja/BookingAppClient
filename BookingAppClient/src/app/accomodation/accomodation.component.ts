@@ -8,7 +8,7 @@ import { AccommodationService } from '../services/accommodation-service';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AccommodationDetailsComponent } from "app/accommodation-details/accommodation-details.component";
 import { Router } from "@angular/router";
-
+import {SearchComponent} from 'app/search/search.component';
 
 @Component({
   selector: 'app-accomodation',

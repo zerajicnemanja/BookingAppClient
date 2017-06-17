@@ -60,7 +60,7 @@ import { PrimeMode } from './prime.mod';
     MapComponent,
     MapDialogComponent,
     AccommodationDetailsComponent,
-    ReservationDialogComponent
+    ReservationDialogComponent,
   ],
   entryComponents:[
     ReservationDialogComponent,

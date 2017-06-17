@@ -1,3 +1,97 @@
-<p>
-  search works!
-</p>
+<form (ngSubmit)="onSubmit(searchfrom.value)" style="width: 600px">
+  <p-panel header="Search">
+    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2">
+          Country :
+        </div>
+      </div>
+      <div class="ui-grid-col-6">
+        <input pInputText type="text" name="Country" placeholder="optional"  style="width: 100px"/>
+      </div>
+    </div>
+    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2">
+          Region:
+        </div>
+      </div>
+      <div class="ui-grid-col-6">
+        <input pInputText type="text" name="Region" placeholder="optional" style="width: 100px" />
+      </div>
+    </div>
+    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2">
+          Place:
+        </div>
+      </div>
+      <div class="ui-grid-col-6">
+        <input pInputText type="text" name="Place" placeholder="optional" style="width: 100px"/>
+      </div>
+    </div>
+
+    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2">
+          Bed count:
+        </div>
+      </div>
+      <div class="ui-grid-col-6">
+        <input pInputText type="text" name="BedCount" placeholder="optional" />
+      </div>
+    </div>
+
+    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2">
+          Min. price ($):
+        </div>
+      </div>
+      <div class="ui-grid-col-6">
+        <input pInputText type="number" name="MinPrice" placeholder="min. price per night" />
+      </div>
+    </div>
+
+    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2">
+          Max. price ($):
+        </div>
+      </div>
+      <div class="ui-grid-col-6">
+        <input pInputText type="number" name="MaxPrice" placeholder="max. price per night" />
+      </div>
+    </div>
+
+    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2">
+          Min. rate :
+        </div>
+      </div>
+      <div class="ui-grid-col-6">
+        <input pInputText type="number" name="MinRate" placeholder="minimal rate" />
+      </div>
+    </div>
+
+    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-2">
+          Max. rate :
+        </div>
+      </div>
+      <div class="ui-grid-col-6">
+        <input pInputText type="number" min="0" max="10" name="MaxRate" placeholder="maximal rate" />
+      </div>
+    </div>
+
+    <div class="ui-grid-row">
+      <div class="ui-grid-col-2"></div>
+      <div class="ui-grid-col-6">
+        <button pButton type="submit" label="Submit"></button>
+      </div>
+      <div class="ui-grid-col-4"></div>
+    </div>
+  </p-panel>
+</form>
