@@ -8,13 +8,14 @@ import { AccommodationService } from '../services/accommodation-service';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AccommodationDetailsComponent } from "app/accommodation-details/accommodation-details.component";
 import { Router } from "@angular/router";
-
+import {SearchComponent} from 'app/search/search.component';
 
 @Component({
   selector: 'app-accomodation',
   templateUrl: './accomodation.component.html',
   styleUrls: ['./accomodation.component.css'],
-  providers:[AccommodationService]
+  providers:[AccommodationService],
+  
 })
 export class AccomodationComponent implements OnInit {
 
@@ -92,6 +93,10 @@ export class AccomodationComponent implements OnInit {
     this.router.navigate(['/accommodation-details/'+accommodation.Id]);
 
   
+  }
+
+   onNotify(accommodationList:Array<Accommodation>):void {
+   this.accommodations=accommodationList;
   }
 
 }
