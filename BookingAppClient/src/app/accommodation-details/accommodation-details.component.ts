@@ -78,10 +78,17 @@ export class AccommodationDetailsComponent implements OnInit {
 
         this.accommodationService.getImages(this.accommodation.Id).subscribe(
             (result:any)=>{
+                result = result.json();
+                if(result == undefined || result == null){
+                    return;
+                }
                 this.images= [];
-                result.json().forEach(element => {
-                    this.images.push({source:element.replace(/\\/g,"/")});
+                result.forEach(element => {
+                    this.images.push({source:element, alt:'Description for Image',title:'Image'});
                 });
+                if(this.images == []){
+                    this.images = [{source:"assets/noimagefound.jpg"}];
+                }
                // this.images = result.json();
                
             })

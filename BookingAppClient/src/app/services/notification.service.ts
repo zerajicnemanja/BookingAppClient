@@ -90,7 +90,7 @@ export class NotificationService {
         let username = localStorage.getItem("username");
         let role = localStorage.getItem("role");
 
-        this.proxy.invoke('Subscribe', 'admin', 'Admin');
+        this.proxy.invoke('Subscribe', username, role);
     }
 
 }  
