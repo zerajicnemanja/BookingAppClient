@@ -35,9 +35,10 @@ import { AccommodationDetailsComponent } from "app/accommodation-details/accommo
 import { RatingModule} from "ngx-rating";
 import { ReservationDialogComponent } from './reservation-dialog/reservation-dialog.component'
 import { DatepickerModule } from 'angular2-material-datepicker'
-import { ButtonModule } from "primeng/components/button/button";
-import { NotificationService } from './services/notification.service';
 import { PrimeMode } from './prime.mod';
+import { NotificationService } from './services/notification.service';
+import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-upload/ng2-file-upload';
+
 @NgModule({
    declarations: [
     AppComponent,
@@ -61,6 +62,8 @@ import { PrimeMode } from './prime.mod';
     MapDialogComponent,
     AccommodationDetailsComponent,
     ReservationDialogComponent,
+    FileSelectDirective,
+    FileDropDirective
   ],
   entryComponents:[
     ReservationDialogComponent,

@@ -33,11 +33,6 @@
     left: 0;
 }
 
-.right {
-    position: absolute;
-    right: 0;
-}
-
 .comment_star {
     color: yellow;
     position: absolute;
@@ -45,6 +40,6 @@
     right: 0;
 }
 
-.commemt_text{
+.commemt_text {
     word-wrap: break-word;
 }

@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
   }
 
   registerUser(user: any, form: NgForm) {
-
+    debugger
     this.registerService.registerUser(user).subscribe(
       data => {
         this.dialogRef.close("success");

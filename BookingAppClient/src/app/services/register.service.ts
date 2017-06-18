@@ -14,7 +14,7 @@ export class RegisterService {
 
   
       return this.http.post(this.locationService.RootLocation +'api/Account/Register',
-         `Username=${model.Username}&Password=${model.Password}&ConfirmPassword=${model.ConfirmPassword}&Email=${model.Email}`,
+         `Username=${model.Username}&Password=${model.Password}&ConfirmPassword=${model.ConfirmPassword}&Email=${model.Email}&Role=${model.Role}`,
          {headers:headers});
                     
     }
