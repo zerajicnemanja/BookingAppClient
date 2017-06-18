@@ -1,7 +1,7 @@
 <div>
     <h3>Rooms</h3>
 
-    <form #fo="ngForm" (ngSubmit)="onSubmit(fo.value, fo)">
+    <!--<form #fo="ngForm" (ngSubmit)="onSubmit(fo.value, fo)">
         <md-input-container>
             <input mdInput placeholder="RoomNubmer" type="text" name="RoomNumber" required [ngModel]=room.RoomNumber>
         </md-input-container>
@@ -19,8 +19,8 @@
         </md-input-container>
         <button md-raised-button color="primary" type="submit">Save</button>
 
-    </form>
-    <table>
+    </form>-->
+    <!--<table>
         <thead>
             <tr>
                 <th>RoomNumber</th>
@@ -41,15 +41,60 @@
             </tr>
         </tbody>
     </table>
-</div>
+</div>-->
 
-<p-dataTable [value]="rooms" sortMode="multiple">
-    <p-column field="RoomNumber" header="RoomNumber" [sortable]="true" [filter]="true"></p-column>
-    <p-column field="BedCount" header="BedCount" [sortable]="true"></p-column>
-    <p-column field="Description" header="Description" [sortable]="true"></p-column>
-    <p-column field="PricePerNight" header="PricePerNight" [sortable]="true"></p-column>
-</p-dataTable>
+    <!--<p-dataTable [value]="rooms" sortMode="multiple">
+        <p-column field="RoomNumber" header="RoomNumber" [sortable]="true" [filter]="true"></p-column>
+        <p-column field="BedCount" header="BedCount" [sortable]="true"></p-column>
+        <p-column field="Description" header="Description" [sortable]="true"></p-column>
+        <p-column field="PricePerNight" header="PricePerNight" [sortable]="true"></p-column>
+    </p-dataTable>
 
-<div>
-    <app-comment [accomodationId]="Id"></app-comment>
+    <div>
+        <app-comment [accomodationId]="Id"></app-comment>
+    </div>-->
+
+    <style>
+        .container {
+            padding: 5px;
+            width: 250px;
+            height: 300px;
+        }
+        
+        .drop-zone {
+            border: dotted 3px lightgray;
+            height: 70px;
+            display: table;
+            width: 98%
+        }
+        /* Default class applied to drop zones on over */
+        
+        .file-over-class {
+            border: dotted 3px green;
+        }
+    </style>
+    <p-galleria [images]="images" panelWidth="500" panelHeight="313" [showCaption]="true"></p-galleria>
+
+    <div class="container block-margin">
+        <div>
+            <div style="display: inline-block;width: 100%">
+                <div ng2FileDrop [ngClass]="{'file-over-class': hasAnotherDropZoneOver}" (fileOver)="fileOverAnother($event)" [uploader]="uploader" class="drop-zone">
+                    <span style="display: table-cell; vertical-align: middle; text-align: center;">Drop images here</span>
+                </div>
+                <input #file type="file" ng2FileSelect [uploader]="uploader" multiple [hidden]="true" /><br/>
+                <button pButton icon="fa-search-plus" label="Choose Files" (click)="file.click()">
+                </button>
+            </div>
+            <div *ngFor="let item of uploader.queue" style="margin-bottom: 5px;margin-top: 5px">
+                <div>
+                    <span><strong>{{ item?.file?.name }}</strong></span>
+                </div>
+                <button pButton icon="fa-upload" class="ui-button-success" iconPos="left" label="Upload" (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                </button>
+            </div>
+            <button pButton icon="fa-upload" label="UploadAll" style="margin-top: 5px" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                </button>
+
+        </div>
+    </div>
 </div>

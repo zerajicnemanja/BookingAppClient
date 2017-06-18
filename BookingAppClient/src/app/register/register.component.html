@@ -23,6 +23,10 @@
             <input mdInput type="password" placeholder="Confirm Password" name="ConfirmPassword" ngModel required />
         </md-input-container>
     </div>
+    <md-select placeholder="Role" ngModel name="Role" required>
+        <md-option value="AppUser">User</md-option>
+        <md-option value="Menager">Menager</md-option>
+    </md-select>
     <div class="center">
         <button md-raised-button type="submit" color="primary">Register</button>
         <button md-raised-button (click)="switchToSignIn()">Sign in</button>

@@ -74,6 +74,17 @@ export class AccommodationService {
 
     }
 
+    getImages(id:number): Observable<Response>{
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/octet-stream');
+        headers.append('Content-type', 'application/json');
+        headers.append('Authorization', 'Bearer ' + localStorage.getItem('id_token'));
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.get(this.locationService.RootLocation + "accommodation/images/" + id, opts);
+    }
+
     private extractData(res: Response) {
         return res.json() || [];
     }

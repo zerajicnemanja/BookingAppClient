@@ -5,6 +5,7 @@
 
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import '~primeng/resources/themes/omega/theme.css';
+@import '~primeng/resources/fonts/css/font-awesome.min.css';
 @import '~primeng/resources/primeng.min.css';
 .example-icon {
     padding: 0 14px;
@@ -39,4 +40,21 @@ body {
 
 .error_msg {
     color: red;
+}
+
+.right {
+    position: absolute;
+    right: 0;
+}
+
+.boxshadow {
+    position: relative;
+    box-shadow: 1px 2px 10px rgba(0, 0, 0, .5);
+    padding: 2px;
+}
+
+.boxshadow:hover {
+    position: relative;
+    box-shadow: 8px 8px 14px rgba(0, 0, 0, .5);
+    padding: 2px;
 }

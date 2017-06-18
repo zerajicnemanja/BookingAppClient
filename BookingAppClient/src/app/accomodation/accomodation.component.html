@@ -1,13 +1,16 @@
 <div class="block-margin">
     <button md-raised-button color="primary" (click)="openAddDialog()">Add Accommodation</button>
     <h4>Accommodations</h4>
-    <div class="example-card" *ngFor="let accommodation of accommodations">
-        <md-card >
+    <div class="example-card boxshadow" *ngFor="let accommodation of accommodations" (click)=accommodationDetails(accommodation) tooltipPosition="top" pTooltip="Click for accommodation detail">
+        <md-card>
             <md-card-header>
-                <div md-card-avatar class="example-header-image"></div>
                 <md-card-title>{{accommodation.Name}}</md-card-title>
                 <md-card-subtitle>{{accommodation.Description}}</md-card-subtitle>
-                <button (click)=accommodationDetails(accommodation)>details</button>
+                <span class="example-spacer"></span>
+                <div>
+                    <button md-mini-fab style="color: white;background-color: green"><md-icon>check</md-icon></button>
+                    <button md-mini-fab style="color: white;background-color: firebrick"><md-icon>close</md-icon></button>
+                </div>
             </md-card-header>
             <img md-card-image src="https://exp.cdn-hotels.com/hotels/1000000/150000/140600/140596/140596_275_z.jpg">
             <md-card-content>
