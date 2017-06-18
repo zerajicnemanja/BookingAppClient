@@ -86,6 +86,9 @@ export class AccommodationDetailsComponent implements OnInit {
                 result.forEach(element => {
                     this.images.push({source:element, alt:'Description for Image',title:'Image'});
                 });
+                if(this.images == []){
+                    this.images = [{source:"assets/noimagefound.jpg"}];
+                }
                // this.images = result.json();
                
             })
