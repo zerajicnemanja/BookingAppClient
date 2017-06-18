@@ -1,25 +1,5 @@
-<form (ngSubmit)="onSubmit(searchfrom.value)" style="width: 600px">
+<form (ngSubmit)="onSubmit(searchform)" name="searchform" style="width: 600px">
   <p-panel header="Search">
-    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
-      <div class="ui-grid-row">
-        <div class="ui-grid-col-2">
-          Country :
-        </div>
-      </div>
-      <div class="ui-grid-col-6">
-        <input pInputText type="text" name="Country" placeholder="optional"  style="width: 100px"/>
-      </div>
-    </div>
-    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
-      <div class="ui-grid-row">
-        <div class="ui-grid-col-2">
-          Region:
-        </div>
-      </div>
-      <div class="ui-grid-col-6">
-        <input pInputText type="text" name="Region" placeholder="optional" style="width: 100px" />
-      </div>
-    </div>
     <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
       <div class="ui-grid-row">
         <div class="ui-grid-col-2">
@@ -27,7 +7,7 @@
         </div>
       </div>
       <div class="ui-grid-col-6">
-        <input pInputText type="text" name="Place" placeholder="optional" style="width: 100px"/>
+        <input pInputText type="text"  [(ngModel)]="filter.Place" name="Place" placeholder="optional" style="width: 100px"/>
       </div>
     </div>
 
@@ -38,7 +18,7 @@
         </div>
       </div>
       <div class="ui-grid-col-6">
-        <input pInputText type="text" name="BedCount" placeholder="optional" />
+        <input pInputText type="number" name="BedCount" [(ngModel)]="filter.BedCount" placeholder="optional" />
       </div>
     </div>
 
@@ -49,7 +29,7 @@
         </div>
       </div>
       <div class="ui-grid-col-6">
-        <input pInputText type="number" name="MinPrice" placeholder="min. price per night" />
+        <input pInputText type="number" [(ngModel)]="filter.MinPrice" name="MinPrice" placeholder="min. price per night" />
       </div>
     </div>
 
@@ -60,7 +40,7 @@
         </div>
       </div>
       <div class="ui-grid-col-6">
-        <input pInputText type="number" name="MaxPrice" placeholder="max. price per night" />
+        <input pInputText type="number" name="MaxPrice" [(ngModel)]="filter.MaxPrice" placeholder="max. price per night" />
       </div>
     </div>
 
@@ -71,7 +51,7 @@
         </div>
       </div>
       <div class="ui-grid-col-6">
-        <input pInputText type="number" name="MinRate" placeholder="minimal rate" />
+        <input pInputText type="number" name="MinRate"  [(ngModel)]="filter.MinRate" placeholder="minimal rate" />
       </div>
     </div>
 
@@ -82,7 +62,7 @@
         </div>
       </div>
       <div class="ui-grid-col-6">
-        <input pInputText type="number" min="0" max="10" name="MaxRate" placeholder="maximal rate" />
+        <input pInputText type="number" min="0" max="10" name="MaxRate"  [(ngModel)]="filter.MaxRate" placeholder="maximal rate" />
       </div>
     </div>
 

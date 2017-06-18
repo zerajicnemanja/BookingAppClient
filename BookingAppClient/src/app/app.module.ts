@@ -89,7 +89,6 @@ import { PrimeMode } from './prime.mod';
     PrimeMode
   ],
   providers: [LocationService,  AuthenticationService,AuthGuard,RegisterService,NotificationService],
-
   bootstrap: [AppComponent]
 })
 export class AppModule {

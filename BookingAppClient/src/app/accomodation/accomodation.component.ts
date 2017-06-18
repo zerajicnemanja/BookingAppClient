@@ -14,7 +14,8 @@ import {SearchComponent} from 'app/search/search.component';
   selector: 'app-accomodation',
   templateUrl: './accomodation.component.html',
   styleUrls: ['./accomodation.component.css'],
-  providers:[AccommodationService]
+  providers:[AccommodationService],
+  
 })
 export class AccomodationComponent implements OnInit {
 
@@ -92,6 +93,10 @@ export class AccomodationComponent implements OnInit {
     this.router.navigate(['/accommodation-details/'+accommodation.Id]);
 
   
+  }
+
+   onNotify(accommodationList:Array<Accommodation>):void {
+   this.accommodations=accommodationList;
   }
 
 }
