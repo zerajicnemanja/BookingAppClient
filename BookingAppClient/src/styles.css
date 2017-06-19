@@ -58,3 +58,25 @@ body {
     box-shadow: 8px 8px 14px rgba(0, 0, 0, .5);
     padding: 2px;
 }
+
+.form_div md-input-container {
+    width: 100%
+}
+
+.isAprove_style {
+    height: 20px;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.approved {
+    border: 1px solid green;
+    border-radius: 5px;
+    color: green;
+}
+
+.not_approved {
+    border: 1px solid red;
+    border-radius: 5px;
+    color: red;
+}

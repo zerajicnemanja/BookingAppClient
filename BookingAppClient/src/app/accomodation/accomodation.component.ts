@@ -8,29 +8,40 @@ import { AccommodationService } from '../services/accommodation-service';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AccommodationDetailsComponent } from "app/accommodation-details/accommodation-details.component";
 import { Router } from "@angular/router";
-import {SearchComponent} from 'app/search/search.component';
+import { SearchComponent } from 'app/search/search.component';
 
 @Component({
   selector: 'app-accomodation',
   templateUrl: './accomodation.component.html',
   styleUrls: ['./accomodation.component.css'],
-  providers:[AccommodationService],
-  
+  providers: [AccommodationService],
+
 })
 export class AccomodationComponent implements OnInit {
 
   accommodations: Array<Accommodation>;
 
+  public role: string;
 
-  constructor(private accommodationService: AccommodationService, public dialog: MdDialog,private router:Router) { }
+  constructor(private accommodationService: AccommodationService, public dialog: MdDialog, private router: Router) { }
 
   ngOnInit() {
 
-    this.accommodationService.getAccommodations().subscribe((res: any) => {
-      this.accommodations = res; console.log(this.accommodations)
-    },
-      error => { alert("Unsuccessful fetch operation! Accomodation"); console.log(error); }
-    );
+    this.role = localStorage.getItem("role");
+    let username = localStorage.getItem("username");
+    if (this.role == "Manager") {
+      this.accommodationService.getAccommodationForOwner(username).subscribe((res: any) => {
+        this.accommodations = res; console.log(this.accommodations)
+      },
+        error => { alert("Unsuccessful fetch operation! Accomodation"); console.log(error); }
+      );
+    } else {
+      this.accommodationService.getAccommodations().subscribe((res: any) => {
+        this.accommodations = res; console.log(this.accommodations)
+      },
+        error => { alert("Unsuccessful fetch operation! Accomodation"); console.log(error); }
+      );
+    }
   }
 
 
@@ -43,7 +54,7 @@ export class AccomodationComponent implements OnInit {
         return;//case when you click outside the dialog
       }
       this.accommodationService.addAccomodation(result).subscribe(() => {
-        console.log('Place ' + result.Name + ' successfuly posted');
+        console.log('Accomodation ' + result.Name + ' successfuly posted');
         this.ngOnInit();
       },
         error => {
@@ -56,6 +67,7 @@ export class AccomodationComponent implements OnInit {
 
   editAccommodation(accommodation: Accommodation) {
     let dialogRef = this.dialog.open(AccommodationDialogComponent);
+    dialogRef.componentInstance.title = "Editing Accommodation";
     dialogRef.componentInstance.accommodation = accommodation;
     dialogRef.afterClosed().subscribe((result: Accommodation) => {
       if (result == undefined || null) {
@@ -63,16 +75,16 @@ export class AccomodationComponent implements OnInit {
       }
 
       result.Id = accommodation.Id;
-      result.AppUser_Id=accommodation.AppUser_Id;
-      
+      result.AppUser_Id = accommodation.AppUser_Id;
+
       this.accommodationService.updateAccommodation(result).subscribe(
-          ()=>{ 
-            console.log('Accommodation ' + result.Name + ' successfuly edited');
-            this.ngOnInit();
-          },
-          error => {alert("Close!"); console.log(error);}
-        );
-    
+        () => {
+          console.log('Accommodation ' + result.Name + ' successfuly edited');
+          this.ngOnInit();
+        },
+        error => { alert("Close!"); console.log(error); }
+      );
+
     });
 
 
@@ -89,14 +101,24 @@ export class AccomodationComponent implements OnInit {
     );
   }
 
-  accommodationDetails(accommodation:Accommodation){
-    this.router.navigate(['/accommodation-details/'+accommodation.Id]);
+  accommodationDetails(accommodation: Accommodation) {
+    this.router.navigate(['/accommodation-details/' + accommodation.Id]);
 
-  
+
   }
 
-   onNotify(accommodationList:Array<Accommodation>):void {
-   this.accommodations=accommodationList;
+  onNotify(accommodationList: Array<Accommodation>): void {
+    this.accommodations = accommodationList;
+  }
+
+  approve(accomodation_id){
+    this.accommodationService.approveAccommodation(accomodation_id).subscribe(
+      ()=>{
+
+        this.ngOnInit();
+        console.log('Accomodation succesfully approved.');
+      },
+      error=>{alert("Error while approving"); console.debug(error);})
   }
 
 }

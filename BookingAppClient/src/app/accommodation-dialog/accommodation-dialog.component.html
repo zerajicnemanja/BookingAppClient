@@ -1,6 +1,6 @@
 <div>
     <h2 md-dialog-title>{{title}}</h2>
-    <form #fo="ngForm" (ngSubmit)="onSubmit(fo.value, fo)">
+    <form #fo="ngForm" (ngSubmit)="onSubmit(fo.value, fo)" class="form_div">
         <div>
             <md-input-container>
                 <input mdInput placeholder="Name" type="text" name="Name" required [ngModel]=accommodation.Name>
@@ -30,24 +30,24 @@
             </md-input-container>
         </div>
         <div>
-            <button md-raised-button color="primary" (click)="openMap()">Set location</button>
+            <button md-mini-fab (click)="openMap()" color="primary" title="Select location" type="button">
+                <md-icon>add_location</md-icon>
+            </button>
         </div>
-        <div>
-            <md-select id="Place" name="Place_Id" [(ngModel)]=place placeholder="Place">
+        <div style="margin-top: 25px;width: 100%">
+            <md-select name="Place_Id" [(ngModel)]="accommodation.Place_Id" placeholder="Place" style="margin-right: 15px">
                 <md-option *ngFor="let place of places" [value]="place.Id">
                     {{place.Name}}
                 </md-option>
             </md-select>
-        </div>
-        <div>
-            <md-select id="Type" name="AccommodationType_Id" [(ngModel)]=accomodationType placeholder="Type">
+            <md-select name="AccommodationType_Id" [(ngModel)]="accommodation.AccommodationType_Id" placeholder="Type">
                 <md-option *ngFor="let type of types" [value]="type.Id">
                     {{type.Name}}
                 </md-option>
             </md-select>
         </div>
-        <div>
-            <button md-raised-button color="primary" type="submit">submit</button>
+        <div class="center" style="margin-top: 10px">
+            <button md-raised-button color="primary" type="submit">Submit</button>
         </div>
     </form>
 </div>

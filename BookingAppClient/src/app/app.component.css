@@ -2,3 +2,19 @@
     background-color: red;
     color: red;
 }
+
+.button_badge {
+    border-radius: 3px;
+    position: absolute;
+    font-size: 16px;
+    color: red;
+    /* Position the badge within the relatively positioned button */
+    right: 20px;
+    top: -3px;
+}
+
+.button_num {
+    font-size: 10px;
+    color: yellow;
+    position: absolute;
+}

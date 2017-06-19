@@ -1,103 +1,83 @@
 <div>
-    <h3>Rooms</h3>
 
-    <!--<form #fo="ngForm" (ngSubmit)="onSubmit(fo.value, fo)">
-        <md-input-container>
-            <input mdInput placeholder="RoomNubmer" type="text" name="RoomNumber" required [ngModel]=room.RoomNumber>
-        </md-input-container>
-        <md-input-container>
-            <input mdInput placeholder="BedCount" type="number" name="BedCount" required [ngModel]=room.BedCount>
-        </md-input-container>
+    <!--<div style="width: 400px;height: 400px">
+        <img [src]="images[0].source" style="width: 100%">
+    </div>-->
+    <div class="image_container">
 
-        <md-input-container>
-            <input mdInput placeholder="Description" type="text" name="Description" required [ngModel]=room.Description>
-        </md-input-container>
+        <div class="container block-margin">
+            <div>
+                <div style="display: inline-block;width: 100%">
+                    <div ng2FileDrop [ngClass]="{'file-over-class': hasAnotherDropZoneOver}" (fileOver)="fileOverAnother($event)" [uploader]="uploader" class="drop-zone">
+                        <span style="display: table-cell; vertical-align: middle; text-align: center;">Drop images here</span>
+                    </div>
+                    <input #file type="file" ng2FileSelect [uploader]="uploader" multiple [hidden]="true" /><br/>
+                    <button pButton icon="fa-search-plus" label="Choose Files" (click)="file.click()">
+                </button>
+                </div>
+                <div *ngFor="let item of uploader.queue" style="margin-bottom: 5px;margin-top: 5px">
+                    <div>
+                        <span><strong>{{ item?.file?.name }}</strong></span>
+                    </div>
+                    <button pButton icon="fa-upload" class="ui-button-success" iconPos="left" label="Upload" (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                </button>
+                </div>
+                <button pButton icon="fa-upload" label="UploadAll" style="margin-top: 5px" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                </button>
 
-        <md-input-container>
+            </div>
+        </div>
+    </div>
 
-            <input mdInput placeholder="PricePerNight" type="number" name="PricePerNight" required [ngModel]=room.PricePerNight>
-        </md-input-container>
-        <button md-raised-button color="primary" type="submit">Save</button>
+    <div class="room_container">
+        <h3>Rooms</h3>
 
-    </form>-->
-    <!--<table>
-        <thead>
-            <tr>
-                <th>RoomNumber</th>
-                <th>BedCount</th>
-                <th>Description</th>
-                <th>PricePerNight</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let room of rooms">
-                <td>{{room.RoomNumber}}</td>
-                <td>{{room.BedCount}}</td>
-                <td>{{room.Description}}</td>
-                <td>{{room.PricePerNight}}</td>
-                <td><button *ngIf="permitDelete" (click)="deleteRoom(room)"> Delete </button></td>
-                <td><button *ngIf="permitEdit" (click)="editRoom(room)">Edit</button></td>
-                <td><button *ngIf="permitReserve" (click)="reserveRoom(room)">Reserve</button></td>
-            </tr>
-        </tbody>
-    </table>
-</div>-->
+        <form #fo="ngForm" (ngSubmit)="onSubmit(fo.value, fo)">
+            <div class="save_container">
+                <button md-raised-button color="primary" type="submit">Save</button>
+            </div>
+            <div style="width: 100%">
+                <md-input-container style="width: 25%;display: inline-block">
+                    <input mdInput placeholder="RoomNubmer" type="text" name="RoomNumber" required [ngModel]=room.RoomNumber>
+                </md-input-container>
+                <md-input-container style="width: 24%;display: inline-block">
+                    <input mdInput placeholder="BedCount" type="number" name="BedCount" required [ngModel]=room.BedCount>
+                </md-input-container>
 
-    <!--<p-dataTable [value]="rooms" sortMode="multiple">
-        <p-column field="RoomNumber" header="RoomNumber" [sortable]="true" [filter]="true"></p-column>
-        <p-column field="BedCount" header="BedCount" [sortable]="true"></p-column>
-        <p-column field="Description" header="Description" [sortable]="true"></p-column>
-        <p-column field="PricePerNight" header="PricePerNight" [sortable]="true"></p-column>
-    </p-dataTable>
+                <md-input-container style="width: 25%;display: inline-block">
+                    <input mdInput placeholder="Description" type="text" name="Description" required [ngModel]=room.Description>
+                </md-input-container>
 
+                <md-input-container style="width: 24%;display: inline-block">
+                    <input mdInput placeholder="PricePerNight" type="number" name="PricePerNight" required [ngModel]=room.PricePerNight>
+                </md-input-container>
+            </div>
+        </form>
+        <!--<p-dataTable [value]="roomTemplate">
+            <p-column field="RoomNumber" header="RoomNumber">
+                <ng-template pTemplate="body">
+                    <input pInputText type="text" name="RoomNumber" required [ngModel]=room.RoomNumber>
+                </ng-template>
+            </p-column>
+            <p-column field="BedCount" header="BedCount"></p-column>
+            <p-column field="Description" header="Description"></p-column>
+            <p-column field="PricePerNight" header="PricePerNight"></p-column>
+        </p-dataTable>-->
+
+        <p-dataTable [value]="rooms" sortMode="multiple" selectionMode="single" [(selection)]="selectedRoom" [contextMenu]="cm">
+            <p-header>Right Click on Rows for ContextMenu</p-header>
+            <p-column field="RoomNumber" header="RoomNumber" [sortable]="true" [filter]="true"></p-column>
+            <p-column field="BedCount" header="BedCount" [sortable]="true"></p-column>
+            <p-column field="Description" header="Description" [sortable]="true"></p-column>
+            <p-column field="PricePerNight" header="PricePerNight" [sortable]="true"></p-column>
+        </p-dataTable>
+    </div>
+    <p-contextMenu #cm [model]="menuItems"></p-contextMenu>
+
+    <!--
     <div>
         <app-comment [accomodationId]="Id"></app-comment>
     </div>-->
 
-    <style>
-        .container {
-            padding: 5px;
-            width: 250px;
-            height: 300px;
-        }
-        
-        .drop-zone {
-            border: dotted 3px lightgray;
-            height: 70px;
-            display: table;
-            width: 98%
-        }
-        /* Default class applied to drop zones on over */
-        
-        .file-over-class {
-            border: dotted 3px green;
-        }
-    </style>
 
-    <p-galleria [images]="images" panelWidth="500" panelHeight="313" [showCaption]="true"></p-galleria>
-    <!--<div style="width: 400px;height: 400px">
-        <img [src]="images[0].source" style="width: 100%">
-    </div>-->
-    <div class="container block-margin">
-        <div>
-            <div style="display: inline-block;width: 100%">
-                <div ng2FileDrop [ngClass]="{'file-over-class': hasAnotherDropZoneOver}" (fileOver)="fileOverAnother($event)" [uploader]="uploader" class="drop-zone">
-                    <span style="display: table-cell; vertical-align: middle; text-align: center;">Drop images here</span>
-                </div>
-                <input #file type="file" ng2FileSelect [uploader]="uploader" multiple [hidden]="true" /><br/>
-                <button pButton icon="fa-search-plus" label="Choose Files" (click)="file.click()">
-                </button>
-            </div>
-            <div *ngFor="let item of uploader.queue" style="margin-bottom: 5px;margin-top: 5px">
-                <div>
-                    <span><strong>{{ item?.file?.name }}</strong></span>
-                </div>
-                <button pButton icon="fa-upload" class="ui-button-success" iconPos="left" label="Upload" (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
-                </button>
-            </div>
-            <button pButton icon="fa-upload" label="UploadAll" style="margin-top: 5px" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
-                </button>
-
-        </div>
-    </div>
 </div>

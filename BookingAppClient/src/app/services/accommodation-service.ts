@@ -22,6 +22,17 @@ export class AccommodationService {
 
     }
 
+     getAccommodationForOwner(username:string): Observable<any> {
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+        headers.append('Authorization', 'Bearer ' + localStorage.getItem('id_token'));
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+
+        return this.http.get(this.locationService.RootLocation + "accommodation/acc_for_user/"+username, opts).map(this.extractData);
+    }
+
     getAccommodation(id: number): Observable<any> {
         const headers: Headers = new Headers();
         headers.append('Accept', 'application/json');
@@ -71,6 +82,19 @@ export class AccommodationService {
         return this.http.put(
             this.locationService.RootLocation + 'accommodation/accommodation/' + accomodation.Id,
             accomodation, opts);
+
+    }
+
+    approveAccommodation(accomodation_id: number) {
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+        headers.append('Authorization', 'Bearer ' + localStorage.getItem('id_token'));
+
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+        return this.http.put(
+            this.locationService.RootLocation + 'accommodation/approve/' + accomodation_id, opts);
 
     }
 

@@ -27,7 +27,7 @@ export class SearchComponent implements OnInit {
     this.filter.MinPrice = 0;
     this.filter.MaxPrice = 10000;
     this.filter.MinRate = 1;
-    this.filter.MaxRate = 10;
+    this.filter.MaxRate = 5;
   }
   onSubmit(searchform: NgForm) {
 

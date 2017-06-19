@@ -5,7 +5,7 @@ import { Observable } from "rxjs/Observable";
 import { HttpCountryService } from './country.http.service';
 import { MdDialog, MdDialogRef, MdSnackBar } from '@angular/material';
 import { DialogcountryComponent } from '../dialogcountry/dialogcountry.component';
-import { NotificationService } from '../services/notification.service';
+
 @Component({
   selector: 'app-country',
   templateUrl: './country.component.html',
@@ -16,7 +16,7 @@ export class CountryComponent implements OnInit {
 
   private countries: Array<Country>;
 
-  constructor(private httpCountryService: HttpCountryService, public dialog: MdDialog, public snackbar: MdSnackBar,private notificationService:NotificationService) {
+  constructor(private httpCountryService: HttpCountryService, public dialog: MdDialog, public snackbar: MdSnackBar) {
   }
 
   ngOnInit() {
@@ -27,7 +27,6 @@ export class CountryComponent implements OnInit {
     );
   }
   openAddDialog() {
-    this.notificationService.sendHello();
     let dialogRef = this.dialog.open(DialogcountryComponent);
     dialogRef.componentInstance.title = "Adding new Country";
     dialogRef.componentInstance.isEditing = false;

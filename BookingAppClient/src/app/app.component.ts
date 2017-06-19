@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, NgZone } from '@angular/core';
 import { MdDialog } from '@angular/material';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthenticationService } from 'app/services/authentication.service';
+import { NotificationService } from './services/notification.service';
 
 @Component({
     selector: 'app-root',
@@ -14,6 +15,9 @@ export class AppComponent implements OnInit {
     title = 'app';
     username: string;
     isLoggedIn: boolean;
+    @Input() notificationList: Array<any> = [];
+    length: string;
+    zone: NgZone;
 
     navLinks = [
         {
@@ -37,10 +41,20 @@ export class AppComponent implements OnInit {
             label: "Accomodation Type"
         }
     ]
-    constructor(public dialog: MdDialog, public authService: AuthenticationService) { }
+    constructor(public dialog: MdDialog, public authService: AuthenticationService, private notificationService: NotificationService) { }
 
     ngOnInit(): void {
         this.checkLogin();
+        //this.notificationService.notificationReceived.subscribe(e => this.notify(e))
+        this.zone = new NgZone({ enableLongStackTrace: false });
+    }
+
+    notify(data: Array<any>) {
+        this.zone.run(() => {
+            this.notificationList = data;
+            this.length = "" + data.length;
+            console.log(data);
+        });
 
     }
 
@@ -55,7 +69,7 @@ export class AppComponent implements OnInit {
                 this.openRegistrationDialog();
             }
             this.checkLogin();
-            //  alert("succesfully login")
+            location.reload();
         },
             error => { alert("Close!"); console.log(error); }
         );
@@ -91,6 +105,8 @@ export class AppComponent implements OnInit {
             () => {
                 localStorage.clear();
                 this.checkLogin();
+                location.reload();
+
             },
             error => { alert("Logout failed!"); console.log(error); });
 
