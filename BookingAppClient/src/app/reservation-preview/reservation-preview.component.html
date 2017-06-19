@@ -1,0 +1,16 @@
+<table style="width:300px">
+  <tr>
+    <th>RoomNumber</th>
+    <th>StartDate</th> 
+    <th>EndData</th>
+    <th>Accommodation</th>    
+  </tr>
+
+  <tr *ngFor="let res of reservations">
+    <td>res.RoomNumber</td>
+    <td>res.StartTime</td>
+    <td>res.EndTime</td>
+    <td>res.AccommodationName</td>
+  </tr>
+</table>
+
