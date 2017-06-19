@@ -64,6 +64,7 @@ import { ImageViewerComponent } from './image-viewer/image-viewer.component';
     MapDialogComponent,
     AccommodationDetailsComponent,
     ReservationDialogComponent,
+    ReservationPreviewComponent,
     FileSelectDirective,
     FileDropDirective,
     ImageViewerComponent

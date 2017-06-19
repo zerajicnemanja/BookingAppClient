@@ -96,6 +96,7 @@ export class AppComponent implements OnInit {
     }
 
     checkLogin() {
+        this.notificationList = [];
         this.username = localStorage.getItem("username");
 
         if (this.username == null || this.username == undefined) {

@@ -10,7 +10,7 @@ export class Accommodation {
     public AverageGrade: string;
     public Latitude: number;
     public Longitude: number;
-    public ImageURL: string;
+    public ImageURLs: string;
     public Approved: string;
     public AccommodationType_Id: number;
     public AppUser_Id: number;
