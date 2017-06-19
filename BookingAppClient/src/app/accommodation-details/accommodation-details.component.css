@@ -5,15 +5,14 @@
 .room_container {
     display: inline-block;
     width: 700px;
-    position: absolute;
-    right: 20px;
+    margin-right: 10px;
 }
 
 .save_container {
     position: relative;
 }
 
-.room_container button {
+.save_container button {
     position: absolute;
     right: 10px;
     bottom: 0px;
@@ -32,9 +31,31 @@
     width: 98%
 }
 
+.map {
+    width: 500px;
+    height: 300px;
+}
+
 
 /* Default class applied to drop zones on over */
 
 .file-over-class {
     border: dotted 3px green;
+}
+
+.main_container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.title_style {
+    text-align: center;
+    border-bottom: 1px solid #5987af;
+    margin-bottom: 5px;
+}
+
+.title_style h1,
+h2,
+h3 {
+    color: #5e7f9b;
 }

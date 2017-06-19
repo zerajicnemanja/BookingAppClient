@@ -1,83 +1,106 @@
 <div>
+    <div class="title_style">
+        <h1>{{accommodation.Name}}</h1>
+    </div>
+    <div class="main_container">
 
-    <!--<div style="width: 400px;height: 400px">
-        <img [src]="images[0].source" style="width: 100%">
-    </div>-->
-    <div class="image_container">
-
-        <div class="container block-margin">
-            <div>
-                <div style="display: inline-block;width: 100%">
-                    <div ng2FileDrop [ngClass]="{'file-over-class': hasAnotherDropZoneOver}" (fileOver)="fileOverAnother($event)" [uploader]="uploader" class="drop-zone">
-                        <span style="display: table-cell; vertical-align: middle; text-align: center;">Drop images here</span>
+        <div class="image_container">
+            <app-image-viewer [images]="images" [imageWidth]="400" [imageHeight]="400"></app-image-viewer>
+            <div class="container block-margin">
+                <div>
+                    <div style="display: inline-block;width: 100%">
+                        <div ng2FileDrop [ngClass]="{'file-over-class': hasAnotherDropZoneOver}" (fileOver)="fileOverAnother($event)" [uploader]="uploader" class="drop-zone">
+                            <span style="display: table-cell; vertical-align: middle; text-align: center;">Drop images here</span>
+                        </div>
+                        <input #file type="file" ng2FileSelect [uploader]="uploader" multiple [hidden]="true" /><br/>
+                        <button pButton icon="fa-search-plus" label="Choose Files" (click)="file.click()">
+                </button>
                     </div>
-                    <input #file type="file" ng2FileSelect [uploader]="uploader" multiple [hidden]="true" /><br/>
-                    <button pButton icon="fa-search-plus" label="Choose Files" (click)="file.click()">
+                    <div *ngFor="let item of uploader.queue" style="margin-bottom: 5px;margin-top: 5px">
+                        <div>
+                            <span><strong>{{ item?.file?.name }}</strong></span>
+                        </div>
+                        <button pButton icon="fa-upload" class="ui-button-success" iconPos="left" label="Upload" (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
                 </button>
-                </div>
-                <div *ngFor="let item of uploader.queue" style="margin-bottom: 5px;margin-top: 5px">
-                    <div>
-                        <span><strong>{{ item?.file?.name }}</strong></span>
                     </div>
-                    <button pButton icon="fa-upload" class="ui-button-success" iconPos="left" label="Upload" (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
-                </button>
-                </div>
-                <button pButton icon="fa-upload" label="UploadAll" style="margin-top: 5px" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                    <button pButton icon="fa-upload" label="UploadAll" style="margin-top: 5px" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
                 </button>
 
+                </div>
             </div>
         </div>
+        <span class="example-spacer"></span>
+        <div class="room_container">
+            <div>
+                <h3>Description</h3>
+                <p>{{accommodation.Description}}</p>
+            </div>
+
+            <div>
+                <div class="flex">
+                    <div>
+                        <h3>Address</h3>
+                        <p>{{accommodation.Address}}</p>
+                    </div>
+                    <span class="example-spacer"></span>
+                    <div>
+                        <h3 class="inline">Rate:</h3>
+                        <h3 class="inline" style="color:yellow">{{accommodation.AverageGrade | number : '1.2-2'}}★</h3>
+                    </div>
+                </div>
+                <div>
+                    <button md-raised-button color="primary" (click)="inplc.active = !inplc.active">View on map</button>
+                </div>
+
+                <p-inplace #inplc>
+                    <span pInplaceContent>
+                    <div style="margin-top: 10px">
+                        <agm-map class="map" [latitude]="mapLatitude" [longitude]="mapLongitude" [zoom]="8" >
+                            <agm-marker [latitude]="accommodation.Latitude" [longitude]="accommodation.Longitude" label=""></agm-marker>
+                        </agm-map>
+                     </div>                        
+                    </span>
+                </p-inplace>
+            </div>
+            <div style="margin-bottom: 20px">
+                <h3>Rooms</h3>
+
+                <form #fo="ngForm" (ngSubmit)="onSubmit(fo.value, fo)">
+                    <div class="save_container">
+                        <button id="save" md-raised-button color="primary" type="submit">Save</button>
+                    </div>
+                    <div style="width: 100%">
+                        <md-input-container style="width: 25%;display: inline-block">
+                            <input mdInput placeholder="RoomNubmer" type="text" name="RoomNumber" required [ngModel]=room.RoomNumber>
+                        </md-input-container>
+                        <md-input-container style="width: 24%;display: inline-block">
+                            <input mdInput placeholder="BedCount" type="number" name="BedCount" required [ngModel]=room.BedCount>
+                        </md-input-container>
+
+                        <md-input-container style="width: 25%;display: inline-block">
+                            <input mdInput placeholder="Description" type="text" name="Description" required [ngModel]=room.Description>
+                        </md-input-container>
+
+                        <md-input-container style="width: 24%;display: inline-block">
+                            <input mdInput placeholder="PricePerNight" type="number" name="PricePerNight" required [ngModel]=room.PricePerNight>
+                        </md-input-container>
+                    </div>
+                </form>
+                <p-dataTable [value]="rooms" sortMode="multiple" selectionMode="single" [(selection)]="selectedRoom" [contextMenu]="cm">
+                    <p-header>Right Click on Rows for ContextMenu</p-header>
+                    <p-column field="RoomNumber" header="RoomNumber" [sortable]="true" [filter]="true"></p-column>
+                    <p-column field="BedCount" header="BedCount" [sortable]="true"></p-column>
+                    <p-column field="Description" header="Description" [sortable]="true"></p-column>
+                    <p-column field="PricePerNight" header="PricePerNight" [sortable]="true"></p-column>
+                </p-dataTable>
+            </div>
+        </div>
+        <p-contextMenu #cm [model]="menuItems"></p-contextMenu>
     </div>
 
-    <div class="room_container">
-        <h3>Rooms</h3>
-
-        <form #fo="ngForm" (ngSubmit)="onSubmit(fo.value, fo)">
-            <div class="save_container">
-                <button md-raised-button color="primary" type="submit">Save</button>
-            </div>
-            <div style="width: 100%">
-                <md-input-container style="width: 25%;display: inline-block">
-                    <input mdInput placeholder="RoomNubmer" type="text" name="RoomNumber" required [ngModel]=room.RoomNumber>
-                </md-input-container>
-                <md-input-container style="width: 24%;display: inline-block">
-                    <input mdInput placeholder="BedCount" type="number" name="BedCount" required [ngModel]=room.BedCount>
-                </md-input-container>
-
-                <md-input-container style="width: 25%;display: inline-block">
-                    <input mdInput placeholder="Description" type="text" name="Description" required [ngModel]=room.Description>
-                </md-input-container>
-
-                <md-input-container style="width: 24%;display: inline-block">
-                    <input mdInput placeholder="PricePerNight" type="number" name="PricePerNight" required [ngModel]=room.PricePerNight>
-                </md-input-container>
-            </div>
-        </form>
-        <!--<p-dataTable [value]="roomTemplate">
-            <p-column field="RoomNumber" header="RoomNumber">
-                <ng-template pTemplate="body">
-                    <input pInputText type="text" name="RoomNumber" required [ngModel]=room.RoomNumber>
-                </ng-template>
-            </p-column>
-            <p-column field="BedCount" header="BedCount"></p-column>
-            <p-column field="Description" header="Description"></p-column>
-            <p-column field="PricePerNight" header="PricePerNight"></p-column>
-        </p-dataTable>-->
-
-        <p-dataTable [value]="rooms" sortMode="multiple" selectionMode="single" [(selection)]="selectedRoom" [contextMenu]="cm">
-            <p-header>Right Click on Rows for ContextMenu</p-header>
-            <p-column field="RoomNumber" header="RoomNumber" [sortable]="true" [filter]="true"></p-column>
-            <p-column field="BedCount" header="BedCount" [sortable]="true"></p-column>
-            <p-column field="Description" header="Description" [sortable]="true"></p-column>
-            <p-column field="PricePerNight" header="PricePerNight" [sortable]="true"></p-column>
-        </p-dataTable>
-    </div>
-    <p-contextMenu #cm [model]="menuItems"></p-contextMenu>
-
-    <!--
-    <div>
+    <div style="margin-left:100px; margin-right: 100px">
         <app-comment [accomodationId]="Id"></app-comment>
-    </div>-->
+    </div>
 
 <app-reservation-preview></app-reservation-preview>
 

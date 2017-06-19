@@ -80,3 +80,12 @@ body {
     border-radius: 5px;
     color: red;
 }
+
+.inline {
+    display: inline-block;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+}

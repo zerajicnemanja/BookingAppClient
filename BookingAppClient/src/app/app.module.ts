@@ -39,6 +39,7 @@ import { PrimeMode } from './prime.mod';
 import { NotificationService } from './services/notification.service';
 import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { ReservationPreviewComponent } from './reservation-preview/reservation-preview.component';
+import { ImageViewerComponent } from './image-viewer/image-viewer.component';
 
 @NgModule({
    declarations: [
@@ -65,7 +66,7 @@ import { ReservationPreviewComponent } from './reservation-preview/reservation-p
     ReservationDialogComponent,
     FileSelectDirective,
     FileDropDirective,
-    ReservationPreviewComponent
+    ImageViewerComponent
   ],
   entryComponents:[
     ReservationDialogComponent,

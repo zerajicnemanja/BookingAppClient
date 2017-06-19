@@ -14,7 +14,8 @@ export class NotificationService {
     private connection: any;
 
     // create the Event Emitter  
-    public notificationReceived: EventEmitter<Array<any>>;
+    public adminNotificationReceived: EventEmitter<Array<any>>;
+    public managerNotificationReceived: EventEmitter<Array<any>>;
     public connectionEstablished: EventEmitter<Boolean>;
     public timeReceived: EventEmitter<string>;
     public connectionExists: Boolean;
@@ -25,7 +26,8 @@ export class NotificationService {
     ) {
         // Constructor initialization  
         this.connectionEstablished = new EventEmitter<Boolean>();
-        this.notificationReceived = new EventEmitter<Array<any>>();
+        this.adminNotificationReceived = new EventEmitter<Array<any>>();
+        this.managerNotificationReceived = new EventEmitter<Array<any>>();
         this.timeReceived = new EventEmitter<string>();
         this.connectionExists = false;
         // create hub connection  
@@ -59,7 +61,11 @@ export class NotificationService {
 
     public registerForNotification(){
          this.proxy.on('checkForApproveAcc', (data: Array<any>) => {
-             this.notificationReceived.emit(data);
+             this.adminNotificationReceived.emit(data);
+         });
+
+        this.proxy.on('getApprovedAcc', (data: Array<any>) => {
+             this.managerNotificationReceived.emit(data);
          });
     }
     // check in the browser console for either signalr connected or not  

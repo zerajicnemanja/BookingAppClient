@@ -23,7 +23,7 @@
                     <span [hidden]="(role != 'Manager') || accommodation.Approved" class="not_approved isAprove_style">Not approved</span>
                     <div style="margin-bottom: 10px" [hidden]="role != 'Admin' || accommodation.Approved">
                         <button md-mini-fab style="color: white;background-color: green" (click)="approve(accommodation.Id)"><md-icon>check</md-icon></button>
-                        <button md-mini-fab style="color: white;background-color: firebrick"><md-icon>close</md-icon></button>
+                        <button md-mini-fab style="color: white;background-color: firebrick" (click)="deleteAccommodation(accommodation)"><md-icon>close</md-icon></button>
                     </div>
 
                 </md-card-header>

@@ -1,0 +1,40 @@
+.button {
+    background: #58657a;
+    border-radius: 20px;
+    padding: 4px 8px;
+    position: relative;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .5);
+}
+
+.button:hover {
+    position: relative;
+    box-shadow: 1px 4px 5px rgba(0, 0, 0, .5);
+    cursor: pointer;
+}
+
+.inner {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+
+.image_1 {
+    background: #58657a;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .5);
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
