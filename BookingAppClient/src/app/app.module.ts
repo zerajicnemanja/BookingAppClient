@@ -40,6 +40,7 @@ import { NotificationService } from './services/notification.service';
 import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-upload/ng2-file-upload';
 import { ReservationPreviewComponent } from './reservation-preview/reservation-preview.component';
 import { ImageViewerComponent } from './image-viewer/image-viewer.component';
+import { UserControlComponent } from './user-control/user-control.component';
 
 @NgModule({
    declarations: [
@@ -66,7 +67,8 @@ import { ImageViewerComponent } from './image-viewer/image-viewer.component';
     ReservationDialogComponent,
     FileSelectDirective,
     FileDropDirective,
-    ImageViewerComponent
+    ImageViewerComponent,
+    UserControlComponent
   ],
   entryComponents:[
     ReservationDialogComponent,
