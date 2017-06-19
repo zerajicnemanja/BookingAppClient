@@ -13,7 +13,7 @@ import { ReservationService } from "app/services/reservation-service";
 import { LocationService } from '../location.services';
 import { FileUploader, FileItem } from 'ng2-file-upload';
 import { MenuItem } from "primeng/primeng";
-
+import {ReservationPreviewComponent} from 'app/reservation-preview/reservation-preview.component';
 @Component({
     selector: 'app-accommodation-details',
     templateUrl: './accommodation-details.component.html',
@@ -183,6 +183,8 @@ export class AccommodationDetailsComponent implements OnInit {
                 error => {
                     console.log(error);
                 });
+        this.edit=false;
+
         } else {
             this.roomService.addRoom(room).subscribe(
                 () => {

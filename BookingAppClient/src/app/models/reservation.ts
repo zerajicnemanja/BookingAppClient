@@ -1,6 +1,6 @@
 export class Reservation{
 
-public StartDate:Date;
+public StartTime:Date;
 public EndTime:Date;
 public Room_Id:number;
 }
