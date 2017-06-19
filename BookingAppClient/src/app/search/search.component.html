@@ -1,77 +1,37 @@
-<form (ngSubmit)="onSubmit(searchform)" name="searchform" style="width: 600px">
-  <p-panel header="Search">
-    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
-      <div class="ui-grid-row">
-        <div class="ui-grid-col-2">
-          Place:
-        </div>
-      </div>
-      <div class="ui-grid-col-6">
-        <input pInputText type="text"  [(ngModel)]="filter.Place" name="Place" placeholder="optional" style="width: 100px"/>
-      </div>
-    </div>
+<div style="margin-left: 20px; margin-top: 10px">
+    <h3>Filter</h3>
+    <form (ngSubmit)="onSubmit(searchform)" name="searchform" style="width: 100%">
 
-    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
-      <div class="ui-grid-row">
-        <div class="ui-grid-col-2">
-          Bed count:
+        <div>
+            <md-input-container style="width: 90%">
+                <input mdInput placeholder="Place" type="text" [(ngModel)]="filter.Place" name="Place">
+            </md-input-container>
         </div>
-      </div>
-      <div class="ui-grid-col-6">
-        <input pInputText type="number" name="BedCount" [(ngModel)]="filter.BedCount" placeholder="optional" />
-      </div>
-    </div>
-
-    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
-      <div class="ui-grid-row">
-        <div class="ui-grid-col-2">
-          Min. price ($):
+        <div>
+            <md-input-container style="width: 90%">
+                <input mdInput placeholder="Bed count" type="number" name="BedCount" [(ngModel)]="filter.BedCount">
+            </md-input-container>
         </div>
-      </div>
-      <div class="ui-grid-col-6">
-        <input pInputText type="number" [(ngModel)]="filter.MinPrice" name="MinPrice" placeholder="min. price per night" />
-      </div>
-    </div>
-
-    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
-      <div class="ui-grid-row">
-        <div class="ui-grid-col-2">
-          Max. price ($):
+        <div>
+            <h4>Price per night($)</h4>
+            <md-input-container style="width: 80px">
+                <input mdInput type="number" [(ngModel)]="filter.MinPrice" name="MinPrice" placeholder="Min">
+            </md-input-container>
+            <md-input-container style="width: 80px">
+                <input mdInput type="number" name="MaxPrice" [(ngModel)]="filter.MaxPrice" placeholder="Max" />
+            </md-input-container>
         </div>
-      </div>
-      <div class="ui-grid-col-6">
-        <input pInputText type="number" name="MaxPrice" [(ngModel)]="filter.MaxPrice" placeholder="max. price per night" />
-      </div>
-    </div>
-
-    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
-      <div class="ui-grid-row">
-        <div class="ui-grid-col-2">
-          Min. rate :
+        <div>
+            <h4>Rate</h4>
+            <md-input-container style="width: 80px">
+                <input mdInput type="number" name="MinRate" [(ngModel)]="filter.MinRate" placeholder="Min" />
+            </md-input-container>
+            <md-input-container style="width: 80px">
+                <input mdInput type="number" min="1" max="5" name="MaxRate" [(ngModel)]="filter.MaxRate" placeholder="Max" />
+            </md-input-container>
         </div>
-      </div>
-      <div class="ui-grid-col-6">
-        <input pInputText type="number" name="MinRate"  [(ngModel)]="filter.MinRate" placeholder="minimal rate" />
-      </div>
-    </div>
-
-    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
-      <div class="ui-grid-row">
-        <div class="ui-grid-col-2">
-          Max. rate :
+        <div style="margin-left: 20px">
+            <button md-raised-button color="primary" type="submit">Filter</button>
         </div>
-      </div>
-      <div class="ui-grid-col-6">
-        <input pInputText type="number" min="0" max="10" name="MaxRate"  [(ngModel)]="filter.MaxRate" placeholder="maximal rate" />
-      </div>
-    </div>
-
-    <div class="ui-grid-row">
-      <div class="ui-grid-col-2"></div>
-      <div class="ui-grid-col-6">
-        <button pButton type="submit" label="Submit"></button>
-      </div>
-      <div class="ui-grid-col-4"></div>
-    </div>
-  </p-panel>
-</form>
+    </form>
+</div>

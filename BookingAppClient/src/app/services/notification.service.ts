@@ -14,7 +14,7 @@ export class NotificationService {
     private connection: any;
 
     // create the Event Emitter  
-    public notificationReceived: EventEmitter<string>;
+    public notificationReceived: EventEmitter<Array<any>>;
     public connectionEstablished: EventEmitter<Boolean>;
     public timeReceived: EventEmitter<string>;
     public connectionExists: Boolean;
@@ -25,7 +25,7 @@ export class NotificationService {
     ) {
         // Constructor initialization  
         this.connectionEstablished = new EventEmitter<Boolean>();
-        this.notificationReceived = new EventEmitter<string>();
+        this.notificationReceived = new EventEmitter<Array<any>>();
         this.timeReceived = new EventEmitter<string>();
         this.connectionExists = false;
         // create hub connection  
@@ -33,7 +33,7 @@ export class NotificationService {
         // create new proxy as name already given in top  
         this.proxy = this.connection.createHubProxy(this.proxyName);
         // register on server events  
-        this.registerOnServerEvents();
+        this.registerForNotification();
 
         this.proxy.on('hello', (data: string) => {
             console.log(data);
@@ -43,9 +43,7 @@ export class NotificationService {
         // call the connecion start method to start the connection to send and receive events. 
         this.startConnection();
 
-         this.proxy.on('checkAccomodations', (data: any) => {
-            console.log(data);
-        })
+        
 
     }
     // method to hit from client  
@@ -54,10 +52,18 @@ export class NotificationService {
         this.proxy.invoke('Hello');
 
     }
+
+    public getProxy(){
+        return this.proxy;
+    }
+
+    public registerForNotification(){
+         this.proxy.on('checkForApproveAcc', (data: Array<any>) => {
+             this.notificationReceived.emit(data);
+         });
+    }
     // check in the browser console for either signalr connected or not  
     private startConnection(): void {
-        let param = { "username": "admin" };
-        $.connection.hub.qs = param;
         this.connection.start().done((data: any) => {
             this.subscribe();
             this.proxy.invoke('Completed');
@@ -71,10 +77,7 @@ export class NotificationService {
     }
     private registerOnServerEvents(): void {
 
-        this.proxy.on('clickNotification', (data: string) => {
-            console.log('received notification: ' + data);
-            this.notificationReceived.emit(data);
-        });
+       
     }
 
     private registerForTimerEvents() {
@@ -90,7 +93,11 @@ export class NotificationService {
         let username = localStorage.getItem("username");
         let role = localStorage.getItem("role");
 
+        if (username == null || username == undefined || role == null || role == undefined) {
+            return;
+        }
         this.proxy.invoke('Subscribe', username, role);
+
     }
 
 }  

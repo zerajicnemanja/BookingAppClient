@@ -20,9 +20,6 @@ export class AccommodationDialogComponent implements OnInit {
     public accommodation: Accommodation;
     public places: Array<Place>;
     public types: Array<AccommodationType>;
-    public accomodationType: AccommodationType;
-    public place: Place;
-
 
     constructor(
         public dialogRef: MdDialogRef<AccommodationDialogComponent>,
@@ -32,7 +29,6 @@ export class AccommodationDialogComponent implements OnInit {
     ) {
 
     }
-
 
     ngOnInit() {
         if (this.accommodation == undefined) {
@@ -49,6 +45,7 @@ export class AccommodationDialogComponent implements OnInit {
     }
 
     onSubmit(accommodation: Accommodation, form: NgForm) {
+
         console.log(accommodation);
         if (!form.valid) {
             return;

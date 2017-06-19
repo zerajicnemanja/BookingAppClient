@@ -1,0 +1,40 @@
+.image_container {
+    display: inline-block;
+}
+
+.room_container {
+    display: inline-block;
+    width: 700px;
+    position: absolute;
+    right: 20px;
+}
+
+.save_container {
+    position: relative;
+}
+
+.room_container button {
+    position: absolute;
+    right: 10px;
+    bottom: 0px;
+}
+
+.container {
+    padding: 5px;
+    width: 250px;
+    height: 300px;
+}
+
+.drop-zone {
+    border: dotted 3px lightgray;
+    height: 70px;
+    display: table;
+    width: 98%
+}
+
+
+/* Default class applied to drop zones on over */
+
+.file-over-class {
+    border: dotted 3px green;
+}

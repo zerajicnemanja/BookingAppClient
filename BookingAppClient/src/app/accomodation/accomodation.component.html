@@ -1,30 +1,43 @@
-<div class="block-margin">
-    <button md-raised-button color="primary" (click)="openAddDialog()">Add Accommodation</button>
-    <h4>Accommodations</h4>
-    <div class="example-card boxshadow" *ngFor="let accommodation of accommodations" (click)=accommodationDetails(accommodation) tooltipPosition="top" pTooltip="Click for accommodation detail">
-        <md-card>
-            <md-card-header>
-                <md-card-title>{{accommodation.Name}}</md-card-title>
-                <md-card-subtitle>{{accommodation.Description}}</md-card-subtitle>
-                <span class="example-spacer"></span>
-                <div>
-                    <button md-mini-fab style="color: white;background-color: green"><md-icon>check</md-icon></button>
-                    <button md-mini-fab style="color: white;background-color: firebrick"><md-icon>close</md-icon></button>
-                </div>
-            </md-card-header>
-            <img md-card-image src="https://exp.cdn-hotels.com/hotels/1000000/150000/140600/140596/140596_275_z.jpg">
-            <md-card-content>
-                <p>
-                    The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally bred for hunting.
-                </p>
-            </md-card-content>
-            <md-card-actions>
-                <button md-button (click)="editAccommodation(accommodation)">Edit</button>
-                <button md-button (click)="deleteAccommodation(accommodation)">Delete</button>
-            </md-card-actions>
-        </md-card>
+<md-sidenav-container class="sidenav-fab-container">
 
+    <md-sidenav #sidenav mode="side" opened="false">
+        <div>
+            <app-search (notify)='onNotify($event)'> </app-search>
+        </div>
+    </md-sidenav>
+
+    <div>
+        <button md-mini-fab style="margin: 10px;" (click)="sidenav.toggle()" color="primary" title="Filter">
+             <md-icon>filter_list</md-icon>
+       </button>
+        <div [hidden]="(role != 'Manager')" style="display: inline-block">
+            <button md-raised-button color="primary" (click)="openAddDialog()"> Add Accommodation</button>
+        </div>
+        <h3 style="margin-left:30px">Accommodations</h3>
+        <div class="example-card boxshadow" *ngFor="let accommodation of accommodations" tooltipPosition="top" pTooltip="Click for accommodation detail">
+            <md-card>
+                <md-card-header>
+                    <md-card-title (click)=accommodationDetails(accommodation)>{{accommodation.Name}}</md-card-title>
+                    <span class="example-spacer"></span>
+                    <span [hidden]="(role != 'Manager') || !accommodation.Approved" class="approved isAprove_style">Approved</span>
+                    <span [hidden]="(role != 'Manager') || accommodation.Approved" class="not_approved isAprove_style">Not approved</span>
+                    <div style="margin-bottom: 10px" [hidden]="role != 'Admin' || accommodation.Approved">
+                        <button md-mini-fab style="color: white;background-color: green" (click)="approve(accommodation.Id)"><md-icon>check</md-icon></button>
+                        <button md-mini-fab style="color: white;background-color: firebrick"><md-icon>close</md-icon></button>
+                    </div>
+
+                </md-card-header>
+                <img (click)=accommodationDetails(accommodation) md-card-image src="https://exp.cdn-hotels.com/hotels/1000000/150000/140600/140596/140596_275_z.jpg">
+                <md-card-content (click)=accommodationDetails(accommodation) style="height: 60px">
+                    <p>
+                        {{accommodation.Description}}
+                    </p>
+                </md-card-content>
+                <md-card-actions>
+                    <button md-button (click)="editAccommodation(accommodation)">Edit</button>
+                    <button md-button (click)="deleteAccommodation(accommodation)">Delete</button>
+                </md-card-actions>
+            </md-card>
+        </div>
     </div>
-    
-</div>
-<app-search (notify)='onNotify($event)'> </app-search>
+</md-sidenav-container>

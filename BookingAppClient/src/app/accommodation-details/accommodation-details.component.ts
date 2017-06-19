@@ -12,6 +12,7 @@ import { Reservation } from "app/models/reservation";
 import { ReservationService } from "app/services/reservation-service";
 import { LocationService } from '../location.services';
 import { FileUploader, FileItem } from 'ng2-file-upload';
+import { MenuItem } from "primeng/primeng";
 
 @Component({
     selector: 'app-accommodation-details',
@@ -35,7 +36,9 @@ export class AccommodationDetailsComponent implements OnInit {
     private rooms: Array<Room>;
     public room: Room;
     public uploadUrl: string;
-
+    public roomTemplate: Array<Room> = [new Room()];
+    public selectedRoom:Room;
+    menuItems: MenuItem[];
     msgs: any[];
 
     uploadedFiles: any[] = [];
@@ -61,7 +64,11 @@ export class AccommodationDetailsComponent implements OnInit {
         if (this.Id == undefined) {
             return;
         }
-
+        this.menuItems = [
+            {label: 'Reserve', icon: 'fa-calendar-check-o', command: (event) => this.reserveRoom(this.selectedRoom)},
+            {label: 'Edit', icon: 'fa-pencil', command: (event) => this.editRoom(this.selectedRoom)},
+            {label: 'Delete', icon: 'fa-trash', command: (event) => this.deleteRoom(this.selectedRoom)}
+        ];
 
         this.accommodationService.getAccommodation(this.Id).subscribe((result: Accommodation) => {
             this.accommodation = result;
@@ -126,6 +133,7 @@ export class AccommodationDetailsComponent implements OnInit {
 
     deleteRoom(room: Room) {
         this.roomService.deleteRoom(room).subscribe(() => {
+            this.getRooms();
             console.log(`romm${room.RoomNumber} deleted`);
         },
             error => {
@@ -167,15 +175,19 @@ export class AccommodationDetailsComponent implements OnInit {
         room.Accomodation_Id = this.accommodation.Id;
         if (this.edit) {
             room.Id = this.room.Id;
-            this.roomService.updateRoom(room).subscribe(() =>
-            { console.log("OK") },
+            this.roomService.updateRoom(room).subscribe(
+                () =>{ 
+                    console.log("OK");
+                    this.getRooms();
+                },
                 error => {
                     console.log(error);
                 });
         } else {
             this.roomService.addRoom(room).subscribe(
                 () => {
-                    console.log("OK")
+                    console.log("OK");
+                    this.getRooms();
                 },
                 error => {
                     console.log(error);
