@@ -27,7 +27,7 @@ export class AccommodationDetailsComponent implements OnInit {
     public images: Array<any> = [{source:"assets/noimagefound.jpg"}];
     public uploader: FileUploader;
     Id: number;
-    public accommodation: Accommodation;
+    public accommodation: Accommodation = new Accommodation();
     private permitEdit: boolean = false;
     private permitDelete: boolean = false;
     private permitAdd: boolean = false;
@@ -38,6 +38,8 @@ export class AccommodationDetailsComponent implements OnInit {
     public uploadUrl: string;
     public roomTemplate: Array<Room> = [new Room()];
     public selectedRoom:Room;
+    public mapLatitude:number;
+    public mapLongitude:number;
     menuItems: MenuItem[];
     msgs: any[];
 
@@ -64,6 +66,8 @@ export class AccommodationDetailsComponent implements OnInit {
         if (this.Id == undefined) {
             return;
         }
+        
+
         this.menuItems = [
             {label: 'Reserve', icon: 'fa-calendar-check-o', command: (event) => this.reserveRoom(this.selectedRoom)},
             {label: 'Edit', icon: 'fa-pencil', command: (event) => this.editRoom(this.selectedRoom)},
@@ -71,6 +75,9 @@ export class AccommodationDetailsComponent implements OnInit {
         ];
 
         this.accommodationService.getAccommodation(this.Id).subscribe((result: Accommodation) => {
+
+            this.mapLatitude = result.Latitude + 0.69;
+            this.mapLongitude = result.Longitude - 1.5;
             this.accommodation = result;
             this.getRooms();
             this.resetPermitions();

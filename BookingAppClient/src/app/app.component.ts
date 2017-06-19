@@ -16,8 +16,8 @@ export class AppComponent implements OnInit {
     username: string;
     isLoggedIn: boolean;
     @Input() notificationList: Array<any> = [];
-    length: string;
     zone: NgZone;
+    role: string;
 
     navLinks = [
         {
@@ -45,15 +45,21 @@ export class AppComponent implements OnInit {
 
     ngOnInit(): void {
         this.checkLogin();
-        //this.notificationService.notificationReceived.subscribe(e => this.notify(e))
+        if (this.role == "Admin") {
+            this.notificationService.adminNotificationReceived.subscribe(e => this.notify(e));
+        } else if (this.role == "Manager") {
+            this.notificationService.managerNotificationReceived.subscribe(e => this.notify(e));
+        }
         this.zone = new NgZone({ enableLongStackTrace: false });
     }
 
     notify(data: Array<any>) {
         this.zone.run(() => {
-            this.notificationList = data;
-            this.length = "" + data.length;
-            console.log(data);
+            if (this.role == "Admin") {
+                this.notificationList = data;
+            } else {
+                this.notificationList.push(data);
+            }
         });
 
     }
@@ -96,6 +102,7 @@ export class AppComponent implements OnInit {
             this.isLoggedIn = false;
             return;
         }
+        this.role = localStorage.getItem("role");
         this.isLoggedIn = true;
     }
 

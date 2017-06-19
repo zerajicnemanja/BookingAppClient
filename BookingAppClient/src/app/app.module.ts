@@ -38,6 +38,7 @@ import { DatepickerModule } from 'angular2-material-datepicker'
 import { PrimeMode } from './prime.mod';
 import { NotificationService } from './services/notification.service';
 import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-upload/ng2-file-upload';
+import { ImageViewerComponent } from './image-viewer/image-viewer.component';
 
 @NgModule({
    declarations: [
@@ -63,7 +64,8 @@ import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-u
     AccommodationDetailsComponent,
     ReservationDialogComponent,
     FileSelectDirective,
-    FileDropDirective
+    FileDropDirective,
+    ImageViewerComponent
   ],
   entryComponents:[
     ReservationDialogComponent,

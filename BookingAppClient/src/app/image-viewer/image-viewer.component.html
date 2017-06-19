@@ -1,0 +1,5 @@
+<div class="main_container" [style.width.px]="imageWidth+ 100">
+    <div class="button inner noselect" (click)="prev()"> &#8630;</div>
+    <img [src]="images[index].source" width="{{imageWidth}}" height="{{imageHeight}}" class="image_1 inner noselect">
+    <div class="button inner noselect" (click)="next()">&#8631;</div>
+</div>
