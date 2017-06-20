@@ -32,10 +32,18 @@ export class SearchComponent implements OnInit {
   onSubmit(searchform: NgForm) {
 
     //http://localhost:54042/odata/AccomodationsQuery?$filter=Rooms/any(tag:tag/BedCount eq 4) 
-//and Rooms/any(r:r/PricePerNight lt 1000 and r/PricePerNight gt 1) and AverageGrade gt 1 and AverageGrade lt 10 and Place/Name eq 'Gacko' and Name eq 'Klinje'
-    this.query = `odata/AccomodationsQuery?$filter=Rooms/any(tag:tag/BedCount eq ${this.filter.BedCount})
-  and Rooms/any(r:r/PricePerNight lt ${this.filter.MaxPrice} and r/PricePerNight gt ${this.filter.MinPrice}) and AverageGrade gt ${this.filter.MinRate} 
-  and AverageGrade lt ${this.filter.MaxPrice} and Place/Name eq '${this.filter.Place}' `;
+    //and Rooms/any(r:r/PricePerNight lt 1000 and r/PricePerNight gt 1) and AverageGrade gt 1 and AverageGrade lt 10 and Place/Name eq 'Gacko' and Name eq 'Klinje'
+    if (this.filter.Place == undefined) {
+      this.query = `odata/AccomodationsQuery?$filter=Rooms/any(tag:tag/BedCount eq ${this.filter.BedCount})
+     and Rooms/any(r:r/PricePerNight lt ${this.filter.MaxPrice} and r/PricePerNight gt ${this.filter.MinPrice}) and AverageGrade gt ${this.filter.MinRate} 
+     and AverageGrade lt ${this.filter.MaxPrice} `;
+
+    } else {
+      this.query = `odata/AccomodationsQuery?$filter=Rooms/any(tag:tag/BedCount eq ${this.filter.BedCount})
+     and Rooms/any(r:r/PricePerNight lt ${this.filter.MaxPrice} and r/PricePerNight gt ${this.filter.MinPrice}) and AverageGrade gt ${this.filter.MinRate} 
+     and AverageGrade lt ${this.filter.MaxPrice} and Place/Name eq '${this.filter.Place}' `;
+    }
+
 
     this.filterService.filterAccommodation(this.query).subscribe((result: Array<Accommodation>) => {
       this.accommodations = result;

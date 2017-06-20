@@ -9,7 +9,7 @@ import { ReservationService } from "app/services/reservation-service";
 })
 export class ReservationPreviewComponent implements OnInit {
 
-private reservations: Array<ReservationPreview>;
+public  reservations: Array<ReservationPreview>;
 
 
   constructor(private reservationService:ReservationService) { }
