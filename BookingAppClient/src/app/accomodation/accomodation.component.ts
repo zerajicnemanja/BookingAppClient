@@ -23,11 +23,13 @@ export class AccomodationComponent implements OnInit {
 
   public role: string;
 
-  constructor(private accommodationService: AccommodationService, public dialog: MdDialog, private router: Router) { }
+  constructor(private accommodationService: AccommodationService, public dialog: MdDialog, private router: Router) { 
+    this.role = localStorage.getItem("role");
+  }
 
   ngOnInit() {
 
-    this.role = localStorage.getItem("role");
+    
     let username = localStorage.getItem("username");
     if (this.role == "Manager") {
       this.accommodationService.getAccommodationForOwner(username).subscribe((res: any) => {

@@ -13,7 +13,7 @@ import { ReservationService } from "app/services/reservation-service";
 import { LocationService } from '../location.services';
 import { FileUploader, FileItem } from 'ng2-file-upload';
 import { MenuItem } from "primeng/primeng";
-import {ReservationPreviewComponent} from 'app/reservation-preview/reservation-preview.component';
+import { ReservationPreviewComponent } from 'app/reservation-preview/reservation-preview.component';
 @Component({
     selector: 'app-accommodation-details',
     templateUrl: './accommodation-details.component.html',
@@ -24,7 +24,7 @@ import {ReservationPreviewComponent} from 'app/reservation-preview/reservation-p
 })
 export class AccommodationDetailsComponent implements OnInit {
 
-    public images: Array<any> = [{source:"assets/noimagefound.jpg"}];
+    public images: Array<any> = [{ source: "assets/noimagefound.jpg" }];
     public uploader: FileUploader;
     Id: number;
     public accommodation: Accommodation = new Accommodation();
@@ -37,9 +37,10 @@ export class AccommodationDetailsComponent implements OnInit {
     public room: Room;
     public uploadUrl: string;
     public roomTemplate: Array<Room> = [new Room()];
-    public selectedRoom:Room;
-    public mapLatitude:number;
-    public mapLongitude:number;
+    public selectedRoom: Room;
+    public mapLatitude: number;
+    public mapLongitude: number;
+    public role: string;
     menuItems: MenuItem[];
     msgs: any[];
 
@@ -66,12 +67,12 @@ export class AccommodationDetailsComponent implements OnInit {
         if (this.Id == undefined) {
             return;
         }
-        
+        this.role = localStorage.getItem("role");
 
         this.menuItems = [
-            {label: 'Reserve', icon: 'fa-calendar-check-o', command: (event) => this.reserveRoom(this.selectedRoom)},
-            {label: 'Edit', icon: 'fa-pencil', command: (event) => this.editRoom(this.selectedRoom)},
-            {label: 'Delete', icon: 'fa-trash', command: (event) => this.deleteRoom(this.selectedRoom)}
+            { label: 'Reserve', icon: 'fa-calendar-check-o', command: (event) => this.reserveRoom(this.selectedRoom) },
+            { label: 'Edit', icon: 'fa-pencil', command: (event) => this.editRoom(this.selectedRoom) },
+            { label: 'Delete', icon: 'fa-trash', command: (event) => this.deleteRoom(this.selectedRoom) }
         ];
 
         this.accommodationService.getAccommodation(this.Id).subscribe((result: Accommodation) => {
@@ -83,28 +84,28 @@ export class AccommodationDetailsComponent implements OnInit {
             this.resetPermitions();
             this.getPermitions();
             this.getImages();
-            this.uploader = new FileUploader({url:this.locationService.RootLocation + "accommodation/image/upload/" + this.accommodation.Id});
-     });
+            this.uploader = new FileUploader({ url: this.locationService.RootLocation + "accommodation/image/upload/" + this.accommodation.Id });
+        });
 
     }
 
-    getImages(){
+    getImages() {
 
         this.accommodationService.getImages(this.accommodation.Id).subscribe(
-            (result:any)=>{
+            (result: any) => {
                 result = result.json();
-                if(result == undefined || result == null){
+                if (result == undefined || result == null) {
                     return;
                 }
-                this.images= [];
+                this.images = [];
                 result.forEach(element => {
-                    this.images.push({source:element, alt:'Description for Image',title:'Image'});
+                    this.images.push({ source: element, alt: 'Description for Image', title: 'Image' });
                 });
-                if(this.images == []){
-                    this.images = [{source:"assets/noimagefound.jpg"}];
+                if (this.images == []) {
+                    this.images = [{ source: "assets/noimagefound.jpg" }];
                 }
-               // this.images = result.json();
-               
+                // this.images = result.json();
+
             })
     }
     getRooms() {
@@ -183,14 +184,14 @@ export class AccommodationDetailsComponent implements OnInit {
         if (this.edit) {
             room.Id = this.room.Id;
             this.roomService.updateRoom(room).subscribe(
-                () =>{ 
+                () => {
                     console.log("OK");
                     this.getRooms();
                 },
                 error => {
                     console.log(error);
                 });
-        this.edit=false;
+            this.edit = false;
 
         } else {
             this.roomService.addRoom(room).subscribe(
@@ -216,15 +217,35 @@ export class AccommodationDetailsComponent implements OnInit {
         this.msgs.push({ severity: 'info', summary: 'File Uploaded', detail: '' });
     }
 
-  public hasBaseDropZoneOver:boolean = false;
-  public hasAnotherDropZoneOver:boolean = false;
- 
-  public fileOverBase(e:any):void {
-    this.hasBaseDropZoneOver = e;
-  }
- 
-  public fileOverAnother(e:any):void {
-    this.hasAnotherDropZoneOver = e;
-  }
+    public hasBaseDropZoneOver: boolean = false;
+    public hasAnotherDropZoneOver: boolean = false;
 
+    public fileOverBase(e: any): void {
+        this.hasBaseDropZoneOver = e;
+    }
+
+    public fileOverAnother(e: any): void {
+        this.hasAnotherDropZoneOver = e;
+    }
+
+    approve(accomodation_id) {
+        this.accommodationService.approveAccommodation(accomodation_id).subscribe(
+            () => {
+
+                this.ngOnInit();
+                console.log('Accomodation succesfully approved.');
+            },
+            error => { alert("Error while approving"); console.debug(error); })
+    }
+
+    deleteAccommodation(accommodation: Accommodation) {
+    this.accommodationService.deleteAccommodation(accommodation).subscribe(
+      () => {
+        console.log('Accommodation ' + accommodation.Name + ' successfuly deleted');
+        this.router.navigate(['/accomodation']);
+      },
+      error => { alert("Unsuccessful deleting operation!"); console.log(error); }
+
+    );
+  }
 }

@@ -31,6 +31,15 @@
         </div>
         <span class="example-spacer"></span>
         <div class="room_container">
+            <div class="flex">
+                <span class="example-spacer"></span>
+                <span [hidden]="(role != 'Manager') || !accommodation.Approved" class="approved isAprove_style">Approved</span>
+                <span [hidden]="(role != 'Manager') || accommodation.Approved" class="not_approved isAprove_style">Not approved</span>
+                <div style="margin-bottom: 10px" [hidden]="role != 'Admin' || accommodation.Approved">
+                    <button md-mini-fab style="color: white;background-color: green" (click)="approve(accommodation.Id)"><md-icon>check</md-icon></button>
+                    <button md-mini-fab style="color: white;background-color: firebrick" (click)="deleteAccommodation(accommodation)"><md-icon>close</md-icon></button>
+                </div>
+            </div>
             <div>
                 <h3>Description</h3>
                 <p>{{accommodation.Description}}</p>
@@ -102,6 +111,6 @@
         <app-comment [accomodationId]="Id"></app-comment>
     </div>
 
-<app-reservation-preview></app-reservation-preview>
+    <app-reservation-preview></app-reservation-preview>
 
 </div>
