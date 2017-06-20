@@ -6,7 +6,7 @@ import { Room } from "app/models/room";
 import { RoomService } from "app/services/room-service";
 import { NgForm } from "@angular/forms/src/forms";
 import { DatepickerModule } from 'angular2-material-datepicker';
-import { MdDialog } from "@angular/material";
+import { MdDialog, MdSnackBar } from '@angular/material';
 import { ReservationDialogComponent } from "app/reservation-dialog/reservation-dialog.component";
 import { Reservation } from "app/models/reservation";
 import { ReservationService } from "app/services/reservation-service";
@@ -47,6 +47,7 @@ export class AccommodationDetailsComponent implements OnInit {
     uploadedFiles: any[] = [];
 
     constructor(
+        private snackbar:MdSnackBar,
         private router: Router,
         public dialog: MdDialog,
         private activatedRoute: ActivatedRoute,
@@ -157,21 +158,11 @@ export class AccommodationDetailsComponent implements OnInit {
 
 
     reserveRoom(reservationRoom: Room) {
-        let dialogRef = this.dialog.open(ReservationDialogComponent, {
-            height: '400px',
-            width: '600px',
-        });
+        let dialogRef = this.dialog.open(ReservationDialogComponent);
         dialogRef.componentInstance.title = "New reservation";
+        dialogRef.componentInstance.room_id = reservationRoom.Id
         dialogRef.afterClosed().subscribe((result: Reservation) => {
-            result.Room_Id = reservationRoom.Id;
-            console.log(result);
-            this.reservationService.addReservation(result).subscribe(() => {
-                console.log('Ok')
-            },
-                error => {
-                    console.log(error);
-                });
-
+           this.snackbar.open('Reservation successfuly added for room ' + reservationRoom.RoomNumber , "", { duration: 3000 });
         },
             error => {
                 console.log(error);

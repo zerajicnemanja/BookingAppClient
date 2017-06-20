@@ -18,28 +18,40 @@ export class AppComponent implements OnInit {
     isLoggedIn: boolean;
     @Input() notificationList: Array<any> = [];
     zone: NgZone;
-    role: string;
+    role: string = "Anonymus"
 
     navLinks = [
         {
             route: ['/country'],
-            label: "Country"
+            label: "Country",
+            permission:['Admin']
         },
         {
             route: ['/region'],
-            label: "Region"
+            label: "Region",
+            permission:['Admin']
+            
         },
         {
             route: ['/place'],
-            label: "Place"
+            label: "Place",
+            permission:['Admin']
         },
         {
             route: ['/accomodation'],
-            label: "Accomodation"
+            label: "Accomodation",
+            permission:['Admin','Manager','User','Anonymus']
         },
         {
             route: ['/accomodation_type'],
-            label: "Accomodation Type"
+            label: "Accomodation Type",
+            permission:['Admin']
+        },
+
+        {
+            route: ['/reservations'],
+            label: "Reservations",
+            permission:['Admin','Manager','User']
         }
     ]
     constructor(
@@ -110,6 +122,9 @@ export class AppComponent implements OnInit {
             return;
         }
         this.role = localStorage.getItem("role");
+        if(this.role == undefined){
+            this.role = "Anonymus";
+        }
         this.isLoggedIn = true;
     }
 
@@ -131,5 +146,12 @@ export class AppComponent implements OnInit {
         if(this.role == "Manager"){
             this.notificationList= [];
         }
+    }
+
+    isInRole(link:any){
+        if(link.permission.indexOf(this.role) !== -1) {
+            return true;
+        }
+        return false;
     }
 }

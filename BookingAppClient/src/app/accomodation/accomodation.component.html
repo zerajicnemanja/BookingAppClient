@@ -10,7 +10,7 @@
         <button md-mini-fab style="margin: 10px;" (click)="sidenav.toggle()" color="primary" title="Filter">
              <md-icon>filter_list</md-icon>
        </button>
-        <div [hidden]="(role != 'Manager')" class="inline">
+        <div *ngIf="(role == 'Manager')" class="inline">
             <button md-raised-button color="primary" (click)="openAddDialog()"> Add Accommodation</button>
         </div>
 
@@ -41,11 +41,11 @@
                 </md-card-header>
                 <img (click)=accommodationDetails(accommodation) md-card-image [src]="getImageFromPath(accommodation.ImageURLs)" height="300px">
                 <md-card-content (click)=accommodationDetails(accommodation) style="height: 60px">
-                    <p>
+                    <p class="sakri_visak">
                         {{accommodation.Description}}
                     </p>
                 </md-card-content>
-                <md-card-actions>
+                <md-card-actions *ngIf="role == 'Manager'|| role == 'Admin'">
                     <button md-button (click)="editAccommodation(accommodation)">Edit</button>
                     <button md-button (click)="deleteAccommodation(accommodation)">Delete</button>
                 </md-card-actions>

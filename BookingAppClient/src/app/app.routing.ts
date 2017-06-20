@@ -7,6 +7,7 @@ import { PlaceComponent } from "app/place/place.component";
 import { AccomodationComponent } from 'app/accomodation/accomodation.component';
 import { AccomodationTypeComponent } from './accomodation-type/accomodation-type.component';
 import { AccommodationDetailsComponent } from "app/accommodation-details/accommodation-details.component";
+import { ReservationPreviewComponent } from 'app/reservation-preview/reservation-preview.component';
 
 const appRoutes: Routes = [
     // { path: 'country', component: CountryComponent,canActivate:[AuthGuard]},
@@ -15,7 +16,8 @@ const appRoutes: Routes = [
     { path: 'place', component: PlaceComponent },
     { path: 'accomodation', component: AccomodationComponent },
     { path: 'accomodation_type', component: AccomodationTypeComponent },
-    { path: 'accommodation-details/:Id', component: AccommodationDetailsComponent }
+    { path: 'accommodation-details/:Id', component: AccommodationDetailsComponent },
+    { path: 'reservations',component: ReservationPreviewComponent}
 
 ];
 

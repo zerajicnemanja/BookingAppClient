@@ -1,14 +1,19 @@
-<h2> Reservation</h2>
+<div style="width: 400px; height: 350px;">
+    <h2> Reservation</h2>
 
-<form #fo="ngForm" (ngSubmit)="onSubmit(fo)">
-  <div>
-    <label> Start date</label>
-    <material-datepicker [(date)]="reservation.StartTime" name="StartTime" required></material-datepicker>
-  </div>
-  <div>
-    <label> End date</label>
-    <material-datepicker [(date)]="reservation.EndTime"  name="EndTime" required></material-datepicker>
+    <form #fo="ngForm" (ngSubmit)="onSubmit(fo)">
+        <div style="margin-bottom: 10px">
+            <label style="width: 100px"> Start date</label>
+            <material-datepicker [(date)]="reservation.StartTime" name="StartTime" required></material-datepicker>
+        </div>
+        <div style="margin-bottom: 20px">
+            <label style="width: 100px"> End date</label>
+            <material-datepicker [(date)]="reservation.EndTime" name="EndTime" required></material-datepicker>
 
-  </div>
-  <button type="submit"> Save</button>   
-</form>
+        </div>
+        <button md-raised-button color="primary" type="submit"> Save</button>
+    </form>
+    <div *ngIf="errorMessage != undefined" class="error_msg">
+        {{errorMessage}}
+    </div>
+</div>

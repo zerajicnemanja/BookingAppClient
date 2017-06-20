@@ -36,7 +36,20 @@ export class ReservationService {
         headers.append('Authorization', 'Bearer ' + localStorage.getItem('id_token'));
         let opts: RequestOptions = new RequestOptions();
         opts.headers = headers;
-return this.http.get(this.locationService.RootLocation + 'reservation/reservation_preview', opts).map(this.extractData);
+        return this.http.get(this.locationService.RootLocation + 'reservation/reservation_preview', opts).map(this.extractData);
+
+    }
+
+    deleteReservation(res_id) :Observable<any>{
+
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+        headers.append('Authorization', 'Bearer ' + localStorage.getItem('id_token'));
+        let opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+        
+        return this.http.delete(this.locationService.RootLocation + 'reservation/reservation/'+res_id, opts).map(this.extractData);
 
     }
 

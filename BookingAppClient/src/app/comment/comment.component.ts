@@ -17,7 +17,7 @@ export class CommentComponent implements OnInit {
   comments: Array<MyComment>
   rating: number;
   constructor(private commentService: CommentService, private snackbar: MdSnackBar) { }
-
+  isAbleToComment:boolean = false;
   ngOnInit() {
 
     this.comment = new MyComment();
@@ -29,6 +29,14 @@ export class CommentComponent implements OnInit {
       },
 
       error => { alert("Unsuccessful fetch operation! Comments"); console.log(error); }
+    )
+
+    this.commentService.getIsAbleToComment(this.accomodationId).subscribe(
+      res => {
+        this.isAbleToComment =  res == "true" ? true : false ;
+      },
+
+      error => { alert("Unsuccessful fetch operation getIsAbleToComment! Comments"); console.log(error); }
     )
 
     this.rating = 3;

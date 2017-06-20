@@ -6,7 +6,7 @@
 
         <div class="image_container">
             <app-image-viewer [images]="images" [imageWidth]="400" [imageHeight]="400"></app-image-viewer>
-            <div class="container block-margin">
+            <div class="container block-margin" *ngIf="role=='Admin' ||role=='Manager'">
                 <div>
                     <div style="display: inline-block;width: 100%">
                         <div ng2FileDrop [ngClass]="{'file-over-class': hasAnotherDropZoneOver}" (fileOver)="fileOverAnother($event)" [uploader]="uploader" class="drop-zone">
@@ -74,7 +74,7 @@
             <div style="margin-bottom: 20px">
                 <h3>Rooms</h3>
 
-                <form #fo="ngForm" (ngSubmit)="onSubmit(fo.value, fo)">
+                <form #fo="ngForm" (ngSubmit)="onSubmit(fo.value, fo)" *ngIf="role=='Admin' ||role=='Manager'">
                     <div class="save_container">
                         <button id="save" md-raised-button color="primary" type="submit">Save</button>
                     </div>

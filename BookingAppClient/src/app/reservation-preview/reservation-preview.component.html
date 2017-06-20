@@ -1,18 +1,16 @@
-<table style="width:700px">
-  <tr>
-    <th>RoomNumber</th>
-    <th>StartDate</th> 
-    <th>EndData</th>
-    <th>Accommodation</th>  
-    <th>&nbsp</th> 
-  </tr>
+<div class="block-margin">
+    <p-dataTable [value]="reservations" sortMode="multiple" selectionMode="single">
 
-  <tr *ngFor="let res of reservations">
-    <td>{{res.RoomNumber}}</td>
-    <td>{{res.StartTime}}</td>
-    <td>{{res.EndTime}}</td>
-    <td>{{res.AccommodationName}}</td>
-    <td><button>Cancel</button></td>
-  </tr>
-</table>
+        <p-column *ngIf="role!='User'" field="Username" header="Username" [sortable]="true" [filter]="true"></p-column>
+        <p-column field="RoomNumber" header="RoomNumber" [sortable]="true" [filter]="true"></p-column>
+        <p-column field="StartTime" header="StartDate" [sortable]="true"></p-column>
+        <p-column field="EndTime" header="EndData" [sortable]="true"></p-column>
+        <p-column field="AccommodationName" header="Accommodation" [sortable]="true"></p-column>
 
+        <p-column styleClass="col-button">
+            <ng-template let-res="rowData" pTemplate="body" style="width: auto">
+                <button type="button" pButton icon="fa-calendar-times-o" (click)="cancel(res)" title="Cancel"></button>
+            </ng-template>
+        </p-column>
+    </p-dataTable>
+</div>

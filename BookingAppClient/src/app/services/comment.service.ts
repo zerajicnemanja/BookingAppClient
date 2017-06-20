@@ -19,6 +19,16 @@ export class CommentService {
         return this.http.get(this.locationService.RootLocation + "comment/comment/acc/" + id, opts).map(this.extractData);
     }
 
+    getIsAbleToComment(id: number): Observable<any> {
+        const headers: Headers = new Headers();
+        headers.append('Accept', 'application/json');
+        headers.append('Content-type', 'application/json');
+        headers.append('Authorization', 'Bearer ' + localStorage.getItem('id_token'));
+        const opts: RequestOptions = new RequestOptions();
+        opts.headers = headers;
+        return this.http.get(this.locationService.RootLocation + "comment/is_able_to_comment/" + id, opts).map(this.extractData);
+    }
+
 
     addComment(comment: any) {
         const headers: Headers = new Headers();
