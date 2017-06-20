@@ -1,8 +1,19 @@
 <div class="block-margin">
-    <agm-map #f [latitude]="lat" [longitude]="lng" [zoom]="16" (mapClick)="onClick($event)">
-        <agm-marker [latitude]="clickedLat" [longitude]="clickedLong" label=""></agm-marker>
+    <agm-map #f [latitude]="lat" [longitude]="lng" [zoom]="16">
+        <agm-marker *ngFor="let acc of accommodations" [latitude]="acc.Latitude" [longitude]="acc.Longitude">
+            <agm-info-window [latitude]="clickedLat" [longitude]="clickedLong">
+                <div>
+                    <div>
+                        <h2 style="color:gray; text-align: center">{{acc.Name}}</h2>
+                    </div>
+                    <div>
+                        <img [src]="getImageFromPath(acc.ImageURLs)" width="100px" height="100px">
+                    </div>
+                    <div>
+                        <button md-raised-button (click)="navigateTo(acc.Id)">View</button>
+                    </div>
+                </div>
+            </agm-info-window>
+        </agm-marker>
     </agm-map>
-    <div>
-        <p>Clicked latitude: {{clickedLat}} longitude: {{clickedLong}}</p>
-    </div>
 </div>

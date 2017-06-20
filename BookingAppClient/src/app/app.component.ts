@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthenticationService } from 'app/services/authentication.service';
 import { NotificationService } from './services/notification.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-root',
@@ -41,7 +42,12 @@ export class AppComponent implements OnInit {
             label: "Accomodation Type"
         }
     ]
-    constructor(public dialog: MdDialog, public authService: AuthenticationService, private notificationService: NotificationService) { }
+    constructor(
+        public dialog: MdDialog,
+        private router: Router,
+        public authService: AuthenticationService, 
+        private notificationService: NotificationService
+        ) { }
 
     ngOnInit(): void {
         this.checkLogin();
@@ -96,6 +102,7 @@ export class AppComponent implements OnInit {
     }
 
     checkLogin() {
+        this.notificationList = [];
         this.username = localStorage.getItem("username");
 
         if (this.username == null || this.username == undefined) {
@@ -117,5 +124,12 @@ export class AppComponent implements OnInit {
             },
             error => { alert("Logout failed!"); console.log(error); });
 
+    }
+
+    openAcc(acc_id:number){
+        this.router.navigate(['accommodation-details/'+acc_id]);
+        if(this.role == "Manager"){
+            this.notificationList= [];
+        }
     }
 }

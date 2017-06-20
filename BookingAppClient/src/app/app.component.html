@@ -5,10 +5,18 @@
         <span class="button_badge">
             {{notificationList.length}}
         </span>
-        <button md-button title="Notifications">
+        <button md-button title="Notifications" (click)="op.toggle($event)">
              <md-icon>info</md-icon>
          </button>
     </div>
+    <p-overlayPanel #op>
+        <div style="width: 120px; margin-right: 10px" class="title_style">
+            <span style="font-size: 20px; color: #58657a">Notifications</span>
+        </div>
+        <div *ngFor="let notif of notificationList" class="pointer" (click)="openAcc(notif.Id)" title="Click for more detail">
+            <span class="noselect_text">{{notif.Name}}</span>
+        </div>
+    </p-overlayPanel>
     <div *ngIf="!isLoggedIn">
         <button md-button (click)="openLoginDialog()"><md-icon>input</md-icon></button>
         <button md-button (click)="openRegistrationDialog()"><md-icon>person_add</md-icon></button>

@@ -10,9 +10,21 @@
         <button md-mini-fab style="margin: 10px;" (click)="sidenav.toggle()" color="primary" title="Filter">
              <md-icon>filter_list</md-icon>
        </button>
-        <div [hidden]="(role != 'Manager')" style="display: inline-block">
+        <div [hidden]="(role != 'Manager')" class="inline">
             <button md-raised-button color="primary" (click)="openAddDialog()"> Add Accommodation</button>
         </div>
+
+        <div class="inline">
+            <button md-raised-button color="primary" (click)="inplc.active = !inplc.active">View on map</button>
+        </div>
+
+        <p-inplace #inplc>
+            <span pInplaceContent>
+                    <div style="margin-top: 10px">
+                        <app-map [accommodations]="accommodations"></app-map>
+                     </div>                        
+            </span>
+        </p-inplace>
         <h3 style="margin-left:30px">Accommodations</h3>
         <div class="example-card boxshadow" *ngFor="let accommodation of accommodations" tooltipPosition="top" pTooltip="Click for accommodation detail">
             <md-card>
@@ -27,7 +39,7 @@
                     </div>
 
                 </md-card-header>
-                <img (click)=accommodationDetails(accommodation) md-card-image src="https://exp.cdn-hotels.com/hotels/1000000/150000/140600/140596/140596_275_z.jpg">
+                <img (click)=accommodationDetails(accommodation) md-card-image [src]="getImageFromPath(accommodation.ImageURLs)" height="300px">
                 <md-card-content (click)=accommodationDetails(accommodation) style="height: 60px">
                     <p>
                         {{accommodation.Description}}

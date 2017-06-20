@@ -23,11 +23,13 @@ export class AccomodationComponent implements OnInit {
 
   public role: string;
 
-  constructor(private accommodationService: AccommodationService, public dialog: MdDialog, private router: Router) { }
+  constructor(private accommodationService: AccommodationService, public dialog: MdDialog, private router: Router) { 
+    this.role = localStorage.getItem("role");
+  }
 
   ngOnInit() {
 
-    this.role = localStorage.getItem("role");
+    
     let username = localStorage.getItem("username");
     if (this.role == "Manager") {
       this.accommodationService.getAccommodationForOwner(username).subscribe((res: any) => {
@@ -121,4 +123,15 @@ export class AccomodationComponent implements OnInit {
       error=>{alert("Error while approving"); console.debug(error);})
   }
 
+  getImageFromPath(paths:string){
+    if(paths == null && paths == undefined){
+      return "assets/noimagefound.jpg";
+    }
+    let ps = paths.split('#');
+    if(ps[1] == null || ps[1] == undefined|| ps[1]==""){
+      return "assets/noimagefound.jpg";
+    }else{
+      return ps[1];
+    }
+  }
 }

@@ -65,6 +65,7 @@ import { UserControlComponent } from './user-control/user-control.component';
     MapDialogComponent,
     AccommodationDetailsComponent,
     ReservationDialogComponent,
+    ReservationPreviewComponent,
     FileSelectDirective,
     FileDropDirective,
     ImageViewerComponent,

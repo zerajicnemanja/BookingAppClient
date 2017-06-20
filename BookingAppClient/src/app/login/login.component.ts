@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit {
       }*/
     this.authenticationService.login(user.username,user.password) .subscribe(
       response => {
-        debugger
         localStorage.setItem('id_token', response.json().access_token);
         localStorage.setItem('role', response.headers.get('Role'));
         localStorage.setItem('username', user.username);
